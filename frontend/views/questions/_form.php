@@ -6,6 +6,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+$categories = \app\models\Category::find()->all();;
+$c_selected = isset($get['category'])?$get['category']:'';
 /* @var $this yii\web\View */
 /* @var $model app\models\Questions */
 /* @var $form yii\widgets\ActiveForm */
@@ -24,7 +26,12 @@ use yii\widgets\ActiveForm;
         ) 
     ?>
 
-    <?= $form->field($model, 'IdCategory')->textInput() ?>
+    <?= $form->field($model, 'Category')->dropDownList(
+        ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
+        ['prompt' => 'Select a Category']
+        
+        ) 
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
