@@ -45,7 +45,7 @@ class m210722_000809_main_tables extends Migration
 
         $this->createTable('{{%QuestionType}}', [
             'IdQuestionType' => $this->primaryKey(),
-            'QuestionType' => $this->string()->notNull(),
+            'Name' => $this->string()->notNull(),
         ], $tableOptions);
 
          $this->addForeignKey('FKQuestionType', '{{%Questions}}', 'IdQuestionType', '{{%QuestionType}}', 'IdQuestionType', 'CASCADE', 'CASCADE'); 
