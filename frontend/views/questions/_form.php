@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
     ?>
 
     <div id="lblQuestionType" class="d-none">
-        <textarea class="form-control" maxlength="255" style="margin-top: 0px; margin-bottom: 0px; height: 123px;"></textarea>
+        <textarea id="CorrectAnswer" class="form-control" maxlength="255" style="margin-top: 0px; margin-bottom: 0px; height: 123px;"></textarea>
     </div>
 
 
