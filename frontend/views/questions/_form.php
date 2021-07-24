@@ -6,8 +6,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$categories = \app\models\Category::find()->all();;
-$c_selected = isset($get['category'])?$get['category']:'';
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Questions */
 /* @var $form yii\widgets\ActiveForm */
@@ -19,16 +18,26 @@ $c_selected = isset($get['category'])?$get['category']:'';
 
     <?= $form->field($model, 'Question')->textInput(['maxlength' => true]) ?>
 
+
     <?= $form->field($model, 'IdQuestionType')->dropDownList(
         ArrayHelper::map(QuestionType::find()->all(), 'IdQuestionType','QuestionType'),
-        ['prompt' => 'Select a Question Type']
+        ['prompt' => 'Select a Question Type',
+         'id' => 'QuestionTypeSelect',
+         'onchange' => 'questionType();',
+        ]
         
         ) 
     ?>
 
-    <?= $form->field($model, 'Category')->dropDownList(
+    <div id="lblQuestionType" class="d-none">
+        <textarea class="form-control" maxlength="255" style="margin-top: 0px; margin-bottom: 0px; height: 123px;"></textarea>
+    </div>
+
+
+    <?= $form->field($model, 'IdCategory')->dropDownList(
         ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
-        ['prompt' => 'Select a Category']
+        ['prompt' => 'Select a Category'       
+        ]
         
         ) 
     ?>

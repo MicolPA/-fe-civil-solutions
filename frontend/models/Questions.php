@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Category;
 
 /**
  * This is the model class for table "questions".

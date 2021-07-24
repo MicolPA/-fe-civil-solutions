@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/main.js',
-        'js/jquery.min.js',
+        'js/jquery-3.6.0.js',
         'js/bootstrap.js',
         'js/bootstrap.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js',
