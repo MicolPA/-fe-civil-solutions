@@ -24,54 +24,30 @@ AppAsset::register($this);
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <?= Html::a('<i class="far fa-comments fa-2x"></i>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none']) ?>
 
-<header>
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Category', 'url' => ['/category/index']],
-        ['label' => 'Questions', 'url' => ['/questions/index']],
-        ['label' => 'QuestionType', 'url' => ['/question-type/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-</header>
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <?= Html::a('HOME', ['/'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('PRACTICE', ['/'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('EXAMS', ['/'], ['class' => 'nav-link px-2 link-secondary']) ?>
+          </ul>
+
+          <div class="col-md-3 text-end">
+            <a href="#" class="d-block link-dark text-decoration-none"> <span class="font-weight-bold text-success">Hola, Kuasimodo</span>
+            </a>
+          </div>
+        </header>
+    </div>
 
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </main>
+
+
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
