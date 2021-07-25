@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
 
     <?= $form->field($model, 'IdQuestionType')->dropDownList(
-        ArrayHelper::map(QuestionType::find()->all(), 'IdQuestionType','QuestionType'),
+        ArrayHelper::map(QuestionType::find()->all(), 'IdQuestionType','Name'),
         ['prompt' => 'Select a Question Type',
          'id' => 'QuestionTypeSelect',
          'onchange' => 'questionType();',
