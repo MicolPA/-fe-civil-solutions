@@ -17,6 +17,8 @@ use Yii;
  */
 class Answers extends \yii\db\ActiveRecord
 {
+    public $archivo;
+
     /**
      * {@inheritdoc}
      */
@@ -31,10 +33,12 @@ class Answers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Answer', 'IdQuestion', 'CorrectAnswer', 'Image'], 'required'],
+            [['Answer', 'IdQuestion', 'CorrectAnswer'], 'required'],
             [['IdQuestion'], 'integer'],
             [['Answer', 'CorrectAnswer', 'Image'], 'string', 'max' => 255],
             [['IdQuestion'], 'exist', 'skipOnError' => true, 'targetClass' => Questions::className(), 'targetAttribute' => ['IdQuestion' => 'IdQuestion']],
+            [['archivo'], 'file', 'extensions' => 'jpg,png'],
+        
         ];
     }
 

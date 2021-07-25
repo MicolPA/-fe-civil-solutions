@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Questions */
+/* @var $model2 app\models\Answers */
 
 $this->title = 'Create Questions';
 $this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['index']];
@@ -15,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'model2' => $model2,
     ]) ?>
 
 </div>

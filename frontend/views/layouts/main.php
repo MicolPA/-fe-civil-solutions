@@ -29,9 +29,10 @@ AppAsset::register($this);
             <?= Html::a('<i class="far fa-comments fa-2x"></i>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none']) ?>
 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <?= Html::a('HOME', ['/'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('PRACTICE', ['/'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('EXAMS', ['/'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('CATEGORY', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('QUESTIONS', ['/questions/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('QUESTIONSTYPE', ['/question-type/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
           </ul>
 
           <div class="col-md-3 text-end">

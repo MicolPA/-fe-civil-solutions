@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Questions */
+/* @var $model2 app\models\Answers */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -30,16 +31,23 @@ use yii\widgets\ActiveForm;
     ?>
 
     <div id="lblQuestionType" class="d-none">
-        <textarea id="CorrectAnswer" class="form-control" maxlength="255" style="margin-top: 0px; margin-bottom: 0px; height: 123px;"></textarea>
+        <?= $form->field($model2, 'Answer')->textarea(['rows' => '6',
+            'class' => 'form-control',
+            'id' => 'CorrectAnswer',
+            'name' => 'CorrectAnswer'
+        ]) ?>
     </div>
 
 
     <?= $form->field($model, 'IdCategory')->dropDownList(
         ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
         ['prompt' => 'Select a Category'       
-        ]
+        ]) 
+    ?>
+
+    <?= $form->field($model2, 'Image')->fileInput([
         
-        ) 
+        ]) 
     ?>
 
     <div class="form-group">

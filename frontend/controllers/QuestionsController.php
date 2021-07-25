@@ -3,10 +3,13 @@
 namespace frontend\controllers;
 
 use app\models\Questions;
+use app\models\Answers;
 use app\models\QuestionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
+use yii\web\UploadedFile;
 
 /**
  * QuestionsController implements the CRUD actions for Questions model.
@@ -67,20 +70,60 @@ class QuestionsController extends Controller
     public function actionCreate()
     {
         $model = new Questions();
+        $model2 = new Answers();
+
+        #$this->subirFoto($model2);
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->IdQuestion]);
+            
+            if ($model->load($this->request->post())) {
+                $CorrectAnswer = $this->request->post('CorrectAnswer');
+
+
+                $model2->Answer = $CorrectAnswer;
+                $model2->CorrectAnswer = $CorrectAnswer;
+                $model2->IdQuestion = $model->IdQuestion;
+                #$model2->Image = $CorrectAnswer;
+                
+                $model->save(false);
+                $model2->save(false);
+
+                #print_r($_POST);
+                print_r($model->errors);
+                print_r($model2->errors);
+                /* return $this->redirect(['index']); */
             }
         } else {
             $model->loadDefaultValues();
+            $model2->loadDefaultValues();
         }
 
         return $this->render('create', [
             'model' => $model,
+            'model2' => $model2,
         ]);
     }
 
+    public function subirFoto(Answers $model2)
+    {
+        if ($model2->load($this->request->post())) {
+
+            $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
+
+            if($model2->validate()){
+                if($model2->Image){
+                    $imageRute = 'images/' .time()."_".$model2->archivo->baseName.".".$model2->archivo->extension;
+                    if( $model2->archivo->saveAs($imageRute)){
+                        $model2->Image = $imageRute;
+                    }
+                }
+            }
+
+            /* if ($model2->save()){
+                return $this->redirect(['index']);
+            } */
+        }
+    }
     /**
      * Updates an existing Questions model.
      * If update is successful, the browser will be redirected to the 'view' page.
