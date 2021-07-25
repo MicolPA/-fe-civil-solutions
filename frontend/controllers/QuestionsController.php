@@ -82,15 +82,16 @@ class QuestionsController extends Controller
 
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
-                $model2->IdQuestion = $model->IdQuestion;
                 #$model2->Image = $CorrectAnswer;
                 
                 $model->save(false);
+                
+                $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
 
                 #print_r($_POST);
-                print_r($model->errors);
-                print_r($model2->errors);
+                // print_r($model->errors);
+                // print_r($model2->errors);
                 /* return $this->redirect(['index']); */
             }
         } else {

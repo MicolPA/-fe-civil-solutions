@@ -26,7 +26,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <?= Html::a('<i class="far fa-comments fa-2x"></i>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none']) ?>
+            <?= Html::a('<i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none font-weight-bold text-primary']) ?>
 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
