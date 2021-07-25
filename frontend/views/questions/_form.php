@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
 <div class="questions-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableClientScript' => false]); ?>
 
     <?= $form->field($model, 'Question')->textInput(['maxlength' => true]) ?>
 

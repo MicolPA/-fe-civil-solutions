@@ -77,6 +77,7 @@ class QuestionsController extends Controller
         if ($this->request->isPost) {
             
             if ($model->load($this->request->post())) {
+
                 $CorrectAnswer = $this->request->post('CorrectAnswer');
 
 
@@ -85,14 +86,14 @@ class QuestionsController extends Controller
                 #$model2->Image = $CorrectAnswer;
                 
                 $model->save(false);
-                
+
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
 
                 #print_r($_POST);
                 // print_r($model->errors);
                 // print_r($model2->errors);
-                /* return $this->redirect(['index']); */
+                 return $this->redirect(['create']); 
             }
         } else {
             $model->loadDefaultValues();
@@ -118,6 +119,8 @@ class QuestionsController extends Controller
                         $model2->Image = $imageRute;
                     }
                 }
+            }else{
+                echo "Hola";
             }
 
             /* if ($model2->save()){
