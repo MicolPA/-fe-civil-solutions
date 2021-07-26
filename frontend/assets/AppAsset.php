@@ -22,11 +22,11 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/main.js',
         'js/jquery-3.6.0.js',
-        // 'js/bootstrap.js',
         'js/bootstrap.min.js',
         'js/all.min.js',
         'js/quick-website.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js',
+        'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

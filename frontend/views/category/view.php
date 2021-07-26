@@ -31,6 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'IdCategory',
             'Name',
+            'Count',
+            'Limit',
         ],
     ]) ?>
 

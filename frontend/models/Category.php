@@ -4,12 +4,13 @@ namespace app\models;
 
 use Yii;
 
-
 /**
  * This is the model class for table "category".
  *
  * @property int $IdCategory
  * @property string $Name
+ * @property int $Count
+ * @property int $Limit
  *
  * @property Questions[] $questions
  */
@@ -29,7 +30,8 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Name'], 'required'],
+            [['Name', 'Count', 'Limit'], 'required'],
+            [['Count', 'Limit'], 'integer'],
             [['Name'], 'string', 'max' => 255],
         ];
     }
@@ -42,6 +44,8 @@ class Category extends \yii\db\ActiveRecord
         return [
             'IdCategory' => 'Id Category',
             'Name' => 'Name',
+            'Count' => 'Count',
+            'Limit' => 'Limit',
         ];
     }
 
