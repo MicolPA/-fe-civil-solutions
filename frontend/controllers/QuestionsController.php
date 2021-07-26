@@ -90,9 +90,6 @@ class QuestionsController extends Controller
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
 
-                #print_r($_POST);
-                // print_r($model->errors);
-                // print_r($model2->errors);
                  return $this->redirect(['create']); 
             }
         } else {

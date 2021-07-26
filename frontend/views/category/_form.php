@@ -14,6 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'Count')->textInput(['type' => 'number']) ?>
+
+    <?= $form->field($model, 'Limit')->textInput(['type' => 'number']) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

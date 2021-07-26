@@ -28,9 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'IdCategory',
             'Name',
+            [
+                'label' => 'Count',
+                'attribute' => 'Count',
+                'value' => function($data){
+                    return $data->Count == 0 ? $data->Count."/". $data->Limit : "";
+                },
+            ],
+         
+            [
+                'class' => 'yii\grid\ActionColumn',
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            
         ],
+
+       
     ]); ?>
 
 
