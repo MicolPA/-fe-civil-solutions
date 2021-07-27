@@ -78,6 +78,11 @@ class QuestionsController extends Controller
         if ($this->request->isPost) {
             
             if ($model->load($this->request->post())) {
+<<<<<<< HEAD
+=======
+
+                $CorrectAnswer = $this->request->post('CorrectAnswer');
+>>>>>>> master
 
                 $CorrectAnswer = $this->request->post('CorrectAnswer');
 
@@ -85,8 +90,15 @@ class QuestionsController extends Controller
                 
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
+<<<<<<< HEAD
                 
                 $model->save(false);
+=======
+                #$model2->Image = $CorrectAnswer;
+                
+                $model->save(false);
+
+>>>>>>> master
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
 
