@@ -9,3 +9,4 @@ function questionType(){
         $('#lblQuestionType').addClass('d-none');
     }
 }
+

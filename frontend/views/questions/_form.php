@@ -39,10 +39,15 @@ use yii\widgets\ActiveForm;
     </div>
 
 
-    <?= $form->field($model, 'IdCategory')->dropDownList(
+
+<?= $form->field($model, 'IdCategory')->dropDownList(
         ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
-        ['prompt' => 'Select a Category'       
-        ]) 
+        [
+            'id' => 'CategorySelect',
+            'disabled' => 'disabled',
+        ]
+        
+        ) 
     ?>
 
     <?= $form->field($model2, 'Image')->fileInput([

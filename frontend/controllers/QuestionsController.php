@@ -67,12 +67,13 @@ class QuestionsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    
+    public function actionCreate($IdCategory)
     {
         $model = new Questions();
         $model2 = new Answers();
-
-        #$this->subirFoto($model2);
+        $model->IdCategory = $IdCategory;
+        $this->subirFoto($model2);
 
         if ($this->request->isPost) {
             
@@ -80,13 +81,12 @@ class QuestionsController extends Controller
 
                 $CorrectAnswer = $this->request->post('CorrectAnswer');
 
-
+                $model->IdCategory = $IdCategory; 
+                
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
-                #$model2->Image = $CorrectAnswer;
                 
                 $model->save(false);
-
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
 
@@ -100,6 +100,8 @@ class QuestionsController extends Controller
         return $this->render('create', [
             'model' => $model,
             'model2' => $model2,
+            'IdCategory' => $IdCategory,
+
         ]);
     }
 
@@ -157,6 +159,13 @@ class QuestionsController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionList($IdCategory)
+    {
+        return $this->render('list', [
+            'IdCategory' => $IdCategory,
+        ]);
     }
 
     /**

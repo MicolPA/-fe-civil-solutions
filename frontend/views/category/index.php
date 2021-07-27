@@ -30,9 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'Name',
             [
                 'label' => 'Count',
+                'format' => 'raw',
                 'attribute' => 'Count',
                 'value' => function($data){
-                    return $data->Count == 0 ? $data->Count."/". $data->Limit : "";
+                    return $data->Count == $data->Limit ? Html::a($data->Count."/". $data->Limit, ['/questions/list','IdCategory' => $data->IdCategory]) : "";
+                },
+            ],
+
+            [
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->Count == $data->Limit ? Html::a("New Question", ['/questions/create', 'IdCategory' =>  $data->IdCategory]) : "";
                 },
             ],
          
