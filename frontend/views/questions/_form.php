@@ -36,6 +36,9 @@ use yii\widgets\ActiveForm;
             'id' => 'CorrectAnswer',
             'name' => 'CorrectAnswer'
         ]) ?>
+
+        <button type="button" onclick='newAnswer();' class="btn btn-dark">Agregar respuesta</button>
+        <button type="button" onclick='deleteAnswer();' class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
 
@@ -50,9 +53,7 @@ use yii\widgets\ActiveForm;
         ) 
     ?>
 
-    <?= $form->field($model2, 'Image')->fileInput([
-        
-        ]) 
+    <?= $form->field($model2, 'archivo')->fileInput()
     ?>
 
     <div class="form-group">

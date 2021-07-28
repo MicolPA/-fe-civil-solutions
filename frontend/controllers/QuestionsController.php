@@ -73,7 +73,13 @@ class QuestionsController extends Controller
         $model = new Questions();
         $model2 = new Answers();
         $model->IdCategory = $IdCategory;
-        $this->subirFoto($model2);
+        try {
+            $this->subirFoto($model2, $IdCategory);
+         } catch (\Exception $e) {
+            print_r($model2->errors);
+            print_r($model2);
+             exit;
+         }
 
         if ($this->request->isPost) {
             
@@ -86,11 +92,13 @@ class QuestionsController extends Controller
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
                 
-                $model->save(false);
+                $model->save();
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
 
-                 return $this->redirect(['create']); 
+                return $this->redirect(['create',
+                    'IdCategory' => $IdCategory,
+                ]); 
             }
         } else {
             $model->loadDefaultValues();
@@ -105,14 +113,14 @@ class QuestionsController extends Controller
         ]);
     }
 
-    public function subirFoto(Answers $model2)
+    protected function subirFoto(Answers $model2, $IdCategory) 
     {
         if ($model2->load($this->request->post())) {
 
             $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
 
             if($model2->validate()){
-                if($model2->Image){
+                if($model2->archivo){
                     $imageRute = 'images/' .time()."_".$model2->archivo->baseName.".".$model2->archivo->extension;
                     if( $model2->archivo->saveAs($imageRute)){
                         $model2->Image = $imageRute;
@@ -121,10 +129,6 @@ class QuestionsController extends Controller
             }else{
                 echo "Hola";
             }
-
-            /* if ($model2->save()){
-                return $this->redirect(['index']);
-            } */
         }
     }
     /**
