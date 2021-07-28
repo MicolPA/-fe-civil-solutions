@@ -86,12 +86,13 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            $this->getTypeRole();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            $this->getTypeRole();
+            // return $this->goBack();
         }
 
         $model->password = '';
@@ -99,6 +100,15 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+    function getTypeRole(){
+        //Admin
+        if (Yii::$app->user->identity->RolId == 1) {
+            return $this->redirect(['/admin']);
+        }else{
+            return $this->goHome();
+        }
     }
 
     /**

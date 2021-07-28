@@ -30,7 +30,9 @@ AppAsset::register($this);
 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('HOME 2', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('CATEGORY', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('QUESTIONS', ['/questions/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?= Html::a('QUESTIONSTYPE', ['/question-type/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
           </ul>
 
           <div class="col-md-3 text-end">
