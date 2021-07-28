@@ -31,17 +31,27 @@ use yii\widgets\ActiveForm;
     ?>
 
     <div id="lblQuestionType" class="d-none">
-        <?= $form->field($model2, 'Answer')->textarea(['rows' => '6',
-            'class' => 'form-control',
-            'id' => 'CorrectAnswer',
-            'name' => 'CorrectAnswer'
-        ]) ?>
+        <div id="txtArea">
+            <?= $form->field($model2, 'Answer')->textarea(['rows' => '6',
+                'class' => 'form-control',
+                'id' => 'CorrectAnswer',
+                'name' => 'CorrectAnswer[]'
+            ]) ?>
+        </div>
 
-        <button type="button" onclick='newAnswer();' class="btn btn-dark">Agregar respuesta</button>
-        <button type="button" onclick='deleteAnswer();' class="btn btn-dark">Eliminar respuesta</button>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnAgregarImagen' , 'onclick'=>'javascript:newAnswer(1);',]) ?>
+        <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
+    <div id="lblQuestionType2" class="d-none">
+        <div id="txtArea">
+            <?= $form->field($model, 'Question')->textInput(['maxlength' => true]) ?>
+        
+        </div>
 
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnAgregarImagen' , 'onclick'=>'javascript:newAnswer(1);',]) ?>
+        <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
+    </div>
 
 <?= $form->field($model, 'IdCategory')->dropDownList(
         ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
