@@ -85,9 +85,11 @@ class QuestionsController extends Controller
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
                 
-                $this->subirFoto($model2, $IdCategory);
                 $model->save();
+
                 $model2->IdQuestion = $model->IdQuestion;
+                $model2 = $this->subirFoto($model2, $IdCategory);
+
                 $model2->save(false);
 
                 return $this->redirect(['create',
@@ -126,6 +128,8 @@ class QuestionsController extends Controller
                 // exit;
             // }
         // }
+
+        return $model2;
     }
     /**
      * Updates an existing Questions model.
