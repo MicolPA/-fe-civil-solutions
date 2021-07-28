@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
             ]) ?>
         </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnAgregarImagen' , 'onclick'=>'javascript:newAnswer(1);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(0);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
@@ -49,7 +49,7 @@ use yii\widgets\ActiveForm;
         
         </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnAgregarImagen' , 'onclick'=>'javascript:newAnswer(1);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(0);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 

@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/all.min.js',
         'js/quick-website.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML',
         'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
     ];
     public $depends = [

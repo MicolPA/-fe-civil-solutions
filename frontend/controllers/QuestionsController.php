@@ -82,6 +82,8 @@ class QuestionsController extends Controller
 
                 $model->IdCategory = $IdCategory; 
                 
+                
+
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
                 

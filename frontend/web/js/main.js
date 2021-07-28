@@ -1,7 +1,15 @@
+function questionLimit(){
+    swal({
+        title: "Opps!",
+        text: "You can't add more questions to this category. Limit reached.",
+        icon: "error"
+      });
+
+}
+
 function questionType(){
     let slcQuestionType = document.getElementById('QuestionTypeSelect');
     let questionsType = slcQuestionType.value;
-
 
     if(questionsType == 1) {
         $('#lblQuestionType').removeClass('d-none');
@@ -16,7 +24,7 @@ function newAnswer(valor){
 
     let txtNewAnswer = document.getElementById('txtArea');
     var input = document.createElement("textarea");
-    var button = document.getElementById('btnAgregarImagen');
+    var button = document.getElementById('btnNewAnswer');
 
     input.setAttribute('rows', 6);
 	input.setAttribute('name', 'CorrectAnswer['+valor+']');

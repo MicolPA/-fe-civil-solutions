@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if($data->Count < $data->Limit){
                         return(Html::a("New Question", ['/questions/create', 'IdCategory' =>  $data->IdCategory]));
                     }else{
-                        return(Html::label("Limite alcanzado"));
+                        return('Limit Reached.');
                     }
                 },
             ],
