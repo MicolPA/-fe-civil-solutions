@@ -73,14 +73,7 @@ class QuestionsController extends Controller
         $model = new Questions();
         $model2 = new Answers();
         $model->IdCategory = $IdCategory;
-        try {
-            $this->subirFoto($model2, $IdCategory);
-         } catch (\Exception $e) {
-            print_r($model2->errors);
-            print_r($model2);
-             exit;
-         }
-
+        
         if ($this->request->isPost) {
             
             if ($model->load($this->request->post())) {
@@ -92,6 +85,7 @@ class QuestionsController extends Controller
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
                 
+                $this->subirFoto($model2, $IdCategory);
                 $model->save();
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->save(false);
@@ -115,21 +109,23 @@ class QuestionsController extends Controller
 
     protected function subirFoto(Answers $model2, $IdCategory) 
     {
-        if ($model2->load($this->request->post())) {
+        // if ($model2->load($this->request->post())) {
 
             $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
 
-            if($model2->validate()){
+            // if($model2->validate()){
                 if($model2->archivo){
                     $imageRute = 'images/' .time()."_".$model2->archivo->baseName.".".$model2->archivo->extension;
                     if( $model2->archivo->saveAs($imageRute)){
                         $model2->Image = $imageRute;
                     }
                 }
-            }else{
-                echo "Hola";
-            }
-        }
+            // }else{
+                // print_r($model2->errors);
+                // echo "Hola";
+                // exit;
+            // }
+        // }
     }
     /**
      * Updates an existing Questions model.
