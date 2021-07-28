@@ -85,11 +85,9 @@ class QuestionsController extends Controller
                 $model2->Answer = $CorrectAnswer;
                 $model2->CorrectAnswer = $CorrectAnswer;
                 
+                $this->subirFoto($model2, $IdCategory);
                 $model->save();
-
                 $model2->IdQuestion = $model->IdQuestion;
-                $model2 = $this->subirFoto($model2, $IdCategory);
-
                 $model2->save(false);
 
                 return $this->redirect(['create',
@@ -109,28 +107,7 @@ class QuestionsController extends Controller
         ]);
     }
 
-    protected function subirFoto(Answers $model2, $IdCategory) 
-    {
-        // if ($model2->load($this->request->post())) {
-
-            $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
-
-            // if($model2->validate()){
-                if($model2->archivo){
-                    $imageRute = 'images/' .time()."_".$model2->archivo->baseName.".".$model2->archivo->extension;
-                    if( $model2->archivo->saveAs($imageRute)){
-                        $model2->Image = $imageRute;
-                    }
-                }
-            // }else{
-                // print_r($model2->errors);
-                // echo "Hola";
-                // exit;
-            // }
-        // }
-
-        return $model2;
-    }
+    
     /**
      * Updates an existing Questions model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -186,5 +163,18 @@ class QuestionsController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function subirFoto(Answers $model2, $IdCategory) 
+    {
+
+            $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
+
+                if($model2->archivo){
+                    $imageRute = 'images/' .time()."_".$model2->archivo->baseName.".".$model2->archivo->extension;
+                    if( $model2->archivo->saveAs($imageRute)){
+                        $model2->Image = $imageRute;
+                    }
+                }
     }
 }
