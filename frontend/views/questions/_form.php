@@ -33,23 +33,19 @@ use yii\widgets\ActiveForm;
     <div id="lblQuestionType" class="d-none">
         <div id="txtArea">
             <input class='form-control' type="text" id='CorrectAnswer' name="CorrectAnswer[0]">
-            <!-- <?//= $form->field($model2, 'Answer')->textarea(['rows' => '6',
-                // 'class' => 'form-control',
-                // 'id' => 'CorrectAnswer',
-                // 'name' => 'CorrectAnswer[]'
-            ]) ?> -->
         </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(1);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswerComplete(1);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
     <div id="lblQuestionType2" class="d-none">
-        <div id="txtArea">
-            <input type="text">
-        </div>
+        <div id="txtArea2" class="form-check" >
+                <input class="form-check-input" type="radio" name="radio[0]" id="multipleSelection" value="option1" checked>
+                <input class="form-control" name="CorrectAnswer[0]" type="text">
+        </div>  
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(1);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswerMultiple(1);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 

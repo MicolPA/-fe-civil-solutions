@@ -85,21 +85,14 @@ class QuestionsController extends Controller
                 if(!$model->save()){
                     print_r($model->errors);
                 }
-                for ($i=0; $i <= count($post["CorrectAnswer"]); $i++) { 
-                    
-                    if (isset($post["CorrectAnswer"][$i])) {
-                        $model2 = new Answers();
+                if($model->IdQuestionType == 1){
+                    $this->actionSaveAnswers($post, $model);
 
-                        $model2->IdQuestion = $model->IdQuestion;
-                        $model2->Answer = $post["CorrectAnswer"][$i];
-                        $model2->CorrectAnswer = $post["CorrectAnswer"][$i];
-                        
-                        if(!$model2->save()){
-                            print_r($model2->errors);
-                            exit;
-                        }
-                    }
-                    
+                }else if($model->IdQuestionType == 2){
+                    $this->actionSaveAnswers($post, $model);
+
+                }else{
+
                 }
                 // $this->subirFoto($model2, $IdCategory);
 
@@ -201,6 +194,25 @@ class QuestionsController extends Controller
            
         }
 
+    }
+
+    protected function actionSaveAnswers($post, $model){
+        for ($i=0; $i <= count($post["CorrectAnswer"]); $i++) { 
+                    
+            if (isset($post["CorrectAnswer"][$i])) {
+                $model2 = new Answers();
+
+                $model2->IdQuestion = $model->IdQuestion;
+                $model2->Answer = $post["CorrectAnswer"][$i];
+                $model2->CorrectAnswer = $post["CorrectAnswer"][$i];
+                
+                if(!$model2->save()){
+                    print_r($model2->errors);
+                    exit;
+                }
+            }
+            
+        }
     }
 }
 
