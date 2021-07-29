@@ -4,7 +4,9 @@ namespace frontend\controllers;
 
 use app\models\Questions;
 use app\models\Answers;
+use app\models\Category;
 use app\models\QuestionsSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -70,27 +72,30 @@ class QuestionsController extends Controller
     
     public function actionCreate($IdCategory)
     {
+        #$this->questionLimit($IdCategory);
         $model = new Questions();
         $model2 = new Answers();
-        $model->IdCategory = $IdCategory;
         
         if ($this->request->isPost) {
             
             if ($model->load($this->request->post())) {
 
-                $CorrectAnswer = $this->request->post('CorrectAnswer');
-
+                $CorrectAnswer = $this->request->post('CorrectAnswer[]');
                 $model->IdCategory = $IdCategory; 
                 
-                
-
-                $model2->Answer = $CorrectAnswer;
-                $model2->CorrectAnswer = $CorrectAnswer;
-                
-                $this->subirFoto($model2, $IdCategory);
+               
                 $model->save();
-                $model2->IdQuestion = $model->IdQuestion;
-                $model2->save(false);
+                for ($i=1; $i < count($_POST["CorrectAnswer"]); $i++) { 
+                        $model2 = new Answers();
+
+                        $model2->IdQuestion = $model->IdQuestion;
+                        $model2->Answer = $CorrectAnswer[$i];
+                        $model2->CorrectAnswer = $CorrectAnswer[$i];
+                        
+                        $model2->save(false);
+                    
+            }
+                $this->subirFoto($model2, $IdCategory);
 
                 return $this->redirect(['create',
                     'IdCategory' => $IdCategory,
@@ -179,4 +184,17 @@ class QuestionsController extends Controller
                     }
                 }
     }
+
+    protected function questionLimit($IdCategory){
+
+        $limit = Category::find()->where(['IdCategory' => $IdCategory])->one();
+        
+        if($limit->Count == $limit->Limit){
+            Yii::$app->session->setFlash('limitReached', "Limit Reached.");
+        }else{
+           
+        }
+
+    }
 }
+

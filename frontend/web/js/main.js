@@ -4,7 +4,6 @@ function questionLimit(){
         text: "You can't add more questions to this category. Limit reached.",
         icon: "error"
       });
-
 }
 
 function questionType(){
