@@ -35,11 +35,11 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model2, 'Answer')->textarea(['rows' => '6',
                 'class' => 'form-control',
                 'id' => 'CorrectAnswer',
-                'name' => 'CorrectAnswer[]'
+                'name' => 'CorrectAnswer[1]'
             ]) ?>
         </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(0);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>"newAnswer(2);",]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 

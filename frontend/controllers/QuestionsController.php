@@ -77,25 +77,16 @@ class QuestionsController extends Controller
         $model2 = new Answers();
         
         if ($this->request->isPost) {
-            
+            print_r($_POST);
+                        exit();
             if ($model->load($this->request->post())) {
 
-                $CorrectAnswer = $this->request->post('CorrectAnswer[]');
                 $model->IdCategory = $IdCategory; 
                 
                
                 $model->save();
-                for ($i=1; $i < count($_POST["CorrectAnswer"]); $i++) { 
-                        $model2 = new Answers();
-
-                        $model2->IdQuestion = $model->IdQuestion;
-                        $model2->Answer = $CorrectAnswer[$i];
-                        $model2->CorrectAnswer = $CorrectAnswer[$i];
-                        
-                        $model2->save(false);
-                    
-            }
-                $this->subirFoto($model2, $IdCategory);
+                $this->newAnswer($model);
+                #$this->subirFoto($model2);
 
                 return $this->redirect(['create',
                     'IdCategory' => $IdCategory,
@@ -172,7 +163,7 @@ class QuestionsController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    protected function subirFoto(Answers $model2, $IdCategory) 
+    protected function subirFoto(Answers $model2) 
     {
 
             $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
@@ -194,6 +185,22 @@ class QuestionsController extends Controller
         }else{
            
         }
+
+    }
+
+    protected function newAnswer($model){
+
+        for ($i=1; $i < count($_POST["CorrectAnswer"]); $i++) { 
+            $model2 = new Answers();
+            $CorrectAnswer = $this->request->post(['CorrectAnswer'][$i]);
+
+            $model2->IdQuestion = $model->IdQuestion;
+            $model2->Answer = $CorrectAnswer[$i];
+            $model2->CorrectAnswer = $CorrectAnswer[$i];
+                                    
+            $model2->save(false);
+        
+}
 
     }
 }
