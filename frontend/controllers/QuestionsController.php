@@ -75,27 +75,33 @@ class QuestionsController extends Controller
         #$this->questionLimit($IdCategory);
         $model = new Questions();
         $model2 = new Answers();
+        $post = $this->request->post();
         
         if ($this->request->isPost) {
             
-            if ($model->load($this->request->post())) {
+            if ($model->load($post)) {
 
-                $CorrectAnswer = $this->request->post('CorrectAnswer[]');
-                $model->IdCategory = $IdCategory; 
-                
-               
-                $model->save();
-                for ($i=1; $i < count($_POST["CorrectAnswer"]); $i++) { 
+                $model->IdCategory = $IdCategory;                 
+                if(!$model->save()){
+                    print_r($model->errors);
+                }
+                for ($i=0; $i <= count($post["CorrectAnswer"]); $i++) { 
+                    
+                    if (isset($post["CorrectAnswer"][$i])) {
                         $model2 = new Answers();
 
                         $model2->IdQuestion = $model->IdQuestion;
-                        $model2->Answer = $CorrectAnswer[$i];
-                        $model2->CorrectAnswer = $CorrectAnswer[$i];
+                        $model2->Answer = $post["CorrectAnswer"][$i];
+                        $model2->CorrectAnswer = $post["CorrectAnswer"][$i];
                         
-                        $model2->save(false);
+                        if(!$model2->save()){
+                            print_r($model2->errors);
+                            exit;
+                        }
+                    }
                     
-            }
-                $this->subirFoto($model2, $IdCategory);
+                }
+                // $this->subirFoto($model2, $IdCategory);
 
                 return $this->redirect(['create',
                     'IdCategory' => $IdCategory,

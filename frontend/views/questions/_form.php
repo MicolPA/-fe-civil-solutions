@@ -32,24 +32,24 @@ use yii\widgets\ActiveForm;
 
     <div id="lblQuestionType" class="d-none">
         <div id="txtArea">
-            <?= $form->field($model2, 'Answer')->textarea(['rows' => '6',
-                'class' => 'form-control',
-                'id' => 'CorrectAnswer',
-                'name' => 'CorrectAnswer[]'
-            ]) ?>
+            <input class='form-control' type="text" id='CorrectAnswer' name="CorrectAnswer[0]">
+            <!-- <?//= $form->field($model2, 'Answer')->textarea(['rows' => '6',
+                // 'class' => 'form-control',
+                // 'id' => 'CorrectAnswer',
+                // 'name' => 'CorrectAnswer[]'
+            ]) ?> -->
         </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(0);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(1);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
     <div id="lblQuestionType2" class="d-none">
         <div id="txtArea">
-            <?= $form->field($model, 'Question')->textInput(['maxlength' => true]) ?>
-        
+            <input type="text">
         </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(0);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswer(1);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
