@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Count',
                 'value' => function($data){
                     if($data->Count < $data->Limit){
-                        return(Html::a($data->Count."/". $data->Limit, ['/questions/list','IdCategory' => $data->IdCategory]));
+                        return(Html::a($data->Count."/". $data->Limit, ['/questions/index','IdCategory' => $data->IdCategory]));
                     }else{
-                        return(Html::label("$data->Count/$data->Limit"));
+                        return(Html::a($data->Count."/". $data->Limit, ['/questions/index','IdCategory' => $data->IdCategory]));
                     }
                 },
             ],

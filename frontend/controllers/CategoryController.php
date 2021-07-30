@@ -69,9 +69,16 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->IdCategory]);
+            if($model->Count == 0){
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['index', 'id' => $model->IdCategory]);
+                }
+            }else{
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['index', 'id' => $model->IdCategory]);
+                }
             }
+            
         } else {
             $model->loadDefaultValues();
         }
@@ -93,7 +100,7 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdCategory]);
+            return $this->redirect(['index', 'id' => $model->IdCategory]);
         }
 
         return $this->render('update', [

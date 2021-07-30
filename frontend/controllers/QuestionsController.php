@@ -72,16 +72,17 @@ class QuestionsController extends Controller
     
     public function actionCreate($IdCategory)
     {
-        #$this->questionLimit($IdCategory);
+        $this->questionLimit($IdCategory);
         $model = new Questions();
         $model2 = new Answers();
         $post = $this->request->post();
+        $model->IdCategory = $IdCategory;                 
         
         if ($this->request->isPost) {
             
             if ($model->load($post)) {
-
                 $model->IdCategory = $IdCategory;                 
+
                 if(!$model->save()){
                     print_r($model->errors);
                 }
@@ -189,7 +190,7 @@ class QuestionsController extends Controller
         $limit = Category::find()->where(['IdCategory' => $IdCategory])->one();
         
         if($limit->Count == $limit->Limit){
-            Yii::$app->session->setFlash('limitReached', "Limit Reached.");
+            Yii::$app->session->setFlash('error', 'Limit Reached.');
         }else{
            
         }

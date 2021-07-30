@@ -54,6 +54,7 @@ use yii\widgets\ActiveForm;
         [
             'id' => 'CategorySelect',
             'disabled' => 'disabled',
+            'selected' => "$IdCategory"
         ]
         
         ) 
