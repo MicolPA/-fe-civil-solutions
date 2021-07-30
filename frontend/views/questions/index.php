@@ -26,12 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'Question',
             [
                 'label' => 'Question Type',
-                'attribute' => 'IdQuestionType.Name',
+                'attribute' => 'idQuestionType.Name',
             ],
 
             [
                 'label' => 'Category',
-                'attribute' => 'IdCategory.Name',
+                'attribute' => 'idCategory.Name',
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

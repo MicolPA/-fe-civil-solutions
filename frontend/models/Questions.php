@@ -67,7 +67,7 @@ class Questions extends \yii\db\ActiveRecord
     /**
      * Gets query for [[IdCategory]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActvieQuery
      */
     public function getIdCategory()
     {
