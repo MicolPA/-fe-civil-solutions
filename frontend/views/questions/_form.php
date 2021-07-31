@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
         ) 
     ?>
 
-    <?= $form->field($model2, 'archivo')->fileInput()
+    <?= $form->field($model, 'archivo')->fileInput()
     ?>
 
     <div class="form-group">

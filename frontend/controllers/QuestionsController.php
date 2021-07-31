@@ -95,7 +95,7 @@ class QuestionsController extends Controller
                 }else{
 
                 }
-                // $this->subirFoto($model2, $IdCategory);
+                $this->subirFoto($model);
 
                 return $this->redirect(['create',
                     'IdCategory' => $IdCategory,
@@ -165,17 +165,20 @@ class QuestionsController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    protected function subirFoto(Answers $model2, $IdCategory) 
+    protected function subirFoto(Questions $model) 
     {
 
-            $model2->archivo = UploadedFile::getInstance($model2, 'archivo');
+            $model->archivo = UploadedFile::getInstance($model, 'archivo');
 
-                if($model2->archivo){
-                    $imageRute = 'images/' .time()."_".$model2->archivo->baseName.".".$model2->archivo->extension;
-                    if( $model2->archivo->saveAs($imageRute)){
-                        $model2->Image = $imageRute;
+                if($model->archivo){
+                    $imageRute = 'images/' .time()."_".$model->archivo->baseName.".".$model->archivo->extension;
+                    if( $model->archivo->saveAs($imageRute)){
+                        $model->Image = $imageRute;
+
                     }
                 }
+
+                $model->save(false);
     }
 
     protected function questionLimit($IdCategory){

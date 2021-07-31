@@ -12,6 +12,7 @@ use app\models\Category;
  * @property string $Question
  * @property int $IdQuestionType
  * @property int $IdCategory
+ * @property string $Image
  *
  * @property Answers[] $answers
  * @property Category $idCategory
@@ -19,6 +20,7 @@ use app\models\Category;
  */
 class Questions extends \yii\db\ActiveRecord
 {
+    public $archivo;
     /**
      * {@inheritdoc}
      */
@@ -38,6 +40,7 @@ class Questions extends \yii\db\ActiveRecord
             [['Question'], 'string', 'max' => 255],
             [['IdCategory'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['IdCategory' => 'IdCategory']],
             [['IdQuestionType'], 'exist', 'skipOnError' => true, 'targetClass' => Questiontype::className(), 'targetAttribute' => ['IdQuestionType' => 'IdQuestionType']],
+            [['archivo'], 'file', 'extensions' => 'jpg,png'],
         ];
     }
 
@@ -51,6 +54,7 @@ class Questions extends \yii\db\ActiveRecord
             'Question' => 'Question',
             'IdQuestionType' => 'Id Question Type',
             'IdCategory' => 'Id Category',
+            'archivo' => 'Image',
         ];
     }
 
