@@ -40,10 +40,10 @@ class QuestionsController extends Controller
      * Lists all Questions models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($IdCategory)
     {
         $searchModel = new QuestionsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = $searchModel->search($IdCategory);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -147,13 +147,6 @@ class QuestionsController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    public function actionList($IdCategory)
-    {
-        return $this->render('list', [
-            'IdCategory' => $IdCategory,
-        ]);
     }
 
     /**

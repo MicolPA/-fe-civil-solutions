@@ -48,6 +48,8 @@ class QuestionsSearch extends Questions
             'query' => $query,
         ]);
 
+        $IdCategory = $_GET['IdCategory'];
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -63,7 +65,7 @@ class QuestionsSearch extends Questions
             'IdCategory' => $this->IdCategory,
         ]);
 
-        $query->andFilterWhere(['like', 'Question', $this->Question]);
+        $query->andFilterWhere(['like', 'IdCategory', $IdCategory]);
 
         return $dataProvider;
     }

@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
+                'label' => 'Actions',
                 'format' => 'raw',
                 'value' => function($data){
                     if($data->Count < $data->Limit){

@@ -18,12 +18,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'IdQuestion',
-            'Question',
+            [
+                'label' => 'Id Question',
+                'attribute' => 'IdQuestion',
+            ],
+
+            [
+                'label' => 'Question',
+                'attribute' => 'Question',
+            ],
+
             [
                 'label' => 'Question Type',
                 'attribute' => 'idQuestionType.Name',
@@ -34,7 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'idCategory.Name',
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label' => 'Actions',
+                'format' => 'raw',
+                'value' => function($data){
+                        return(Html::a("Answers ($data->IdQuestion)", ['/questions/create', 'IdCategory' =>  $data->IdCategory]));
+                    }
+            ],
+
         ],
     ]); ?>
 
