@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\QuestionsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -41,10 +40,26 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'label' => 'Actions',
+                'label' => 'Answers',
                 'format' => 'raw',
                 'value' => function($data){
-                        return(Html::a("Answers ($data->IdQuestion)", ['/questions/create', 'IdCategory' =>  $data->IdCategory]));
+                        return(Html::button("Ver Answers", ['/questions/create',
+                            'IdCategory' =>  $data->IdCategory,
+                            'class' => 'btn btn-success',
+                        ]));
+                    }
+            ],
+
+            [
+                'label' => 'Imagen',
+                'format' => 'raw',
+                'attribute' => 'Image',
+                'value' => function($data){
+                        return(Html::button("Ver Imagen", ['',
+                            'type'=>"button",
+                            'class' => 'btn btn-success',
+                            'onclick' => "showImg($data->Image);",
+                        ]));
                     }
             ],
 

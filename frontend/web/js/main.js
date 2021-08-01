@@ -63,6 +63,15 @@ function newAnswerMultiple(valor){
 
 }
 
+function showImg(url){
+        swal({
+            title: "",
+            text: '',
+            icon: '/frontend/web/'+url,
+          });
+    
+    }
+
 
 /* function deleteAnswer(){
     let txtNewAnswer = document.getElementById('txtArea');
