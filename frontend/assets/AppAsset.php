@@ -20,7 +20,7 @@ class AppAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css',
     ];
     public $js = [
-        'js/main.js',
+        'js/main.js?v=1',
         'js/jquery-3.6.0.js',
         // 'js/bootstrap.min.js',
         'js/bootstrap.bundle.min.js',
