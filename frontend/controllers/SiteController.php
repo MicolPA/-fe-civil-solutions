@@ -15,6 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use app\models\Questions;
 
 /**
  * Site controller
@@ -76,6 +77,17 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionHome(){
+
+        $model = new Questions();
+        $categories = \app\models\Category::find()->all();
+
+        return $this->render('home', [
+            'model' => $model,
+            'categories' => $categories,
+        ]);
     }
 
     /**

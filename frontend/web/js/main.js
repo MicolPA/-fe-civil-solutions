@@ -67,7 +67,7 @@ function showImg(url){
         swal({
             title: "",
             text: '',
-            icon: '/frontend/web/'+url,
+            icon: url,
           });
     
     }

@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return(Html::button("Ver Imagen", ['',
                             'type'=>"button",
                             'class' => 'btn btn-success',
-                            'onclick' => "showImg($data->Image);",
+                            'onclick' => "showImg('/frontend/web/$data->Image');",
                         ]));
                     }
             ],

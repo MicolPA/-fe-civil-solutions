@@ -22,7 +22,8 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/main.js',
         'js/jquery-3.6.0.js',
-        'js/bootstrap.min.js',
+        // 'js/bootstrap.min.js',
+        'js/bootstrap.bundle.min.js',
         'js/all.min.js',
         'js/quick-website.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML',
