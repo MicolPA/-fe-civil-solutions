@@ -44,7 +44,8 @@ class QuestionsController extends Controller
     {
         $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search($IdCategory);
-        $this->questionLimit();
+
+        
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -76,12 +77,13 @@ class QuestionsController extends Controller
         $model = new Questions();
         $model2 = new Answers();
         $post = $this->request->post();
-        $model->IdCategory = $IdCategory;                 
-        
+        $model->IdCategory = $IdCategory; 
+
+        $this->questionLimit($IdCategory);
         if ($this->request->isPost) {
             
             if ($model->load($post)) {
-                $model->IdCategory = $IdCategory;                 
+                $model->IdCategory = $IdCategory;    
 
                 if(!$model->save()){
                     print_r($model->errors);
@@ -181,10 +183,24 @@ class QuestionsController extends Controller
                 $model->save(false);
     }
 
-    protected function questionLimit(){
-        echo '<script type="text/javascript">'
-        , 'questionLimit();'
-        , '</script>';
+    protected function questionLimit($IdCategory){
+        $count = Questions::find()
+        ->where(['IdCategory' => $IdCategory])
+        ->count();    
+        
+        $limit = (new \yii\db\Query())
+        ->select(['Limit'])
+        ->from('Category')
+        ->where(['IdCategory' => $IdCategory])
+        ->one(); 
+
+        if($count<=$limit){
+            
+
+            return $this->redirect(['index',
+                    'IdCategory' => $IdCategory,
+                ]); 
+        }
 
     }
 

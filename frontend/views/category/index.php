@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Questions;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -18,6 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php 
+    ?>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -30,13 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Count',
                 'format' => 'raw',
-                'attribute' => 'Count',
                 'value' => function($data){
-                    if($data->Count < $data->Limit){
-                        return(Html::a($data->Count."/". $data->Limit, ['/questions/index','IdCategory' => $data->IdCategory]));
-                    }else{
-                        return(Html::a($data->Count."/". $data->Limit, ['/questions/index','IdCategory' => $data->IdCategory]));
-                    }
+                    $count = Questions::find()
+                            ->where(['IdCategory' => $data->IdCategory])
+                            ->count();
+                        return(Html::a($count."/". $data->Limit, ['/questions/index','IdCategory' => $data->IdCategory]));
                 },
             ],
 
@@ -44,7 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Actions',
                 'format' => 'raw',
                 'value' => function($data){
-                    if($data->Count < $data->Limit){
+                    $count = Questions::find()
+                            ->where(['IdCategory' => $data->IdCategory])
+                            ->count();
+                    if($count < $data->Limit){
                         return(Html::a("New Question", ['/questions/create', 'IdCategory' =>  $data->IdCategory]));
                     }else{
                         return('Limit Reached.');
