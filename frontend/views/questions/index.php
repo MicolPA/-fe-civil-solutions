@@ -43,17 +43,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Answers',
                 'format' => 'raw',
                 'value' => function($data){
-                        return(Html::button("Ver Answers", ['/questions/create',
-                            'IdCategory' =>  $data->IdCategory,
-                            'class' => 'btn btn-success',
-                        ]));
+
+                    return(Html::a('Ver Respuestas', ['/answers/index','IdQuestion' => $data->IdQuestion], ['class' => 'btn btn-success']));
+
                     }
             ],
 
             [
                 'label' => 'Imagen',
                 'format' => 'raw',
-                'attribute' => 'Image',
                 'value' => function($data){
                         return(Html::button("Ver Imagen", ['',
                             'type'=>"button",

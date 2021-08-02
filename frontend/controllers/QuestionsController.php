@@ -44,6 +44,7 @@ class QuestionsController extends Controller
     {
         $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search($IdCategory);
+        $this->questionLimit();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -72,7 +73,6 @@ class QuestionsController extends Controller
     
     public function actionCreate($IdCategory)
     {
-        $this->questionLimit($IdCategory);
         $model = new Questions();
         $model2 = new Answers();
         $post = $this->request->post();
@@ -181,15 +181,10 @@ class QuestionsController extends Controller
                 $model->save(false);
     }
 
-    protected function questionLimit($IdCategory){
-
-        $limit = Category::find()->where(['IdCategory' => $IdCategory])->one();
-        
-        if($limit->Count == $limit->Limit){
-            Yii::$app->session->setFlash('error', 'Limit Reached.');
-        }else{
-           
-        }
+    protected function questionLimit(){
+        echo '<script type="text/javascript">'
+        , 'questionLimit();'
+        , '</script>';
 
     }
 
