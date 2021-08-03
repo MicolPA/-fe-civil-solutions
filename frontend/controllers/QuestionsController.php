@@ -192,9 +192,9 @@ class QuestionsController extends Controller
         $limit = Category::find()
         ->select('Limit')
         ->where(['IdCategory' => $IdCategory])
-        ->one(); 
-
-        if($count >= $limit){
+        ->one();
+         
+        if($count >= $limit->Limit){
             return $this->redirect(['index',
             'IdCategory' => $IdCategory,
         ]); 
