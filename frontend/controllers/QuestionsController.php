@@ -83,10 +83,12 @@ class QuestionsController extends Controller
 
         if ($this->request->isPost) {
             
-            if ($model->load($post)) {
+             if ($model->load($post)) {
                 $model->IdCategory = $IdCategory;    
+            
+                
 
-                if(!$model->save()){
+            if(!$model->save()){
                     print_r($model->errors);
                 }
                 if($model->IdQuestionType == 1){
@@ -95,14 +97,13 @@ class QuestionsController extends Controller
                 }else if($model->IdQuestionType == 2){
                     $this->actionSaveAnswers($post, $model);
 
-                }else{
-
                 }
+                
                 $this->subirFoto($model);
 
                 return $this->redirect(['create',
                     'IdCategory' => $IdCategory,
-                ]); 
+                ]);  
             }
         } else {
             $model->loadDefaultValues();

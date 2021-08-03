@@ -41,8 +41,10 @@ use yii\widgets\ActiveForm;
 
     <div id="lblQuestionType2" class="d-none">
         <div id="txtArea2" class="form-check" >
-                <input class="form-check-input" type="radio" name="radio[0]" id="multipleSelection" value="option1" checked>
+           <div class="form-group">
+                <input class="form-check-input" type="radio" name="multiple" id="multipleSelection" value="" checked>
                 <input class="form-control" name="CorrectAnswer[0]" type="text">
+           </div>
         </div>  
 
         <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswerMultiple(1);',]) ?>

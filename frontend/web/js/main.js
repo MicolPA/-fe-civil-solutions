@@ -45,9 +45,10 @@ function newAnswerMultiple(valor){
     var input2 = document.createElement("input");
     var button = document.getElementById('btnNewAnswer');
 
-    input2.setAttribute('name', 'radio['+valor+']');
+    input2.setAttribute('name', 'multiple');
     input2.setAttribute('class', 'form-check-input');
     input2.setAttribute('type', 'radio');
+    input2.setAttribute('value', 'radio['+valor+']');
 
 	input.setAttribute('name', 'CorrectAnswer['+valor+']');
     input.setAttribute('class', 'form-control');
