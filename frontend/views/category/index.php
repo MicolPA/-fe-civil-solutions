@@ -49,10 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $count = Questions::find()
                             ->where(['IdCategory' => $data->IdCategory])
                             ->count();
-                    if($count <= $data->Limit){
-                        return(Html::a("New Question", ['/questions/create', 'IdCategory' =>  $data->IdCategory]));
-                    }else{
+                    if($count >= $data->Limit){
                         return('Limit Reached.');
+                    }else{
+                        return(Html::a("New Question", ['/questions/create', 'IdCategory' =>  $data->IdCategory]));
                     }
                 },
             ],
