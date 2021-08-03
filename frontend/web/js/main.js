@@ -43,21 +43,17 @@ function newAnswerMultiple(valor){
     let txtNewAnswer = document.getElementById('txtArea2');
     var input = document.createElement("input");
     var input2 = document.createElement("input");
-    var button = document.getElementById('btnNewAnswer');
 
-    input2.setAttribute('name', 'multiple');
+    input2.setAttribute('name', 'multiple['+valor+']');
     input2.setAttribute('class', 'form-check-input');
     input2.setAttribute('type', 'radio');
-    input2.setAttribute('value', 'radio['+valor+']');
 
 	input.setAttribute('name', 'CorrectAnswer['+valor+']');
     input.setAttribute('class', 'form-control');
     input.setAttribute("required", true);
-
-    
-
-	valor = valor + 1;
-    $(button).attr('onclick', 'newAnswerMultiple('+valor+');');
+	
+    valor = valor + 1;
+    $("#btnNewAnswer2").attr('onclick', 'newAnswerMultiple('+valor+');');
     
     txtNewAnswer.appendChild(input2);
     txtNewAnswer.appendChild(input);

@@ -86,8 +86,6 @@ class QuestionsController extends Controller
              if ($model->load($post)) {
                 $model->IdCategory = $IdCategory;    
             
-                
-
             if(!$model->save()){
                     print_r($model->errors);
                 }
@@ -100,7 +98,7 @@ class QuestionsController extends Controller
                 }
                 
                 $this->subirFoto($model);
-
+                
                 return $this->redirect(['create',
                     'IdCategory' => $IdCategory,
                 ]);  
@@ -211,8 +209,12 @@ class QuestionsController extends Controller
 
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->Answer = $post["CorrectAnswer"][$i];
-                $model2->CorrectAnswer = $post["CorrectAnswer"][$i];
-                
+                $correct = $post['multiple'];
+                if(isset([$correct]['$1'])){
+                        $model2->CorrectAnswer = '1';
+                }else{
+                    $model2->CorrectAnswer = '0';
+                }                
                 if(!$model2->save()){
                     print_r($model2->errors);
                     exit;

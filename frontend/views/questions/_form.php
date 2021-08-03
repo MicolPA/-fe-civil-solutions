@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <div id="lblQuestionType" class="d-none">
         <div id="txtArea">
-            <input class='form-control' id='CorrectAnswer' name="CorrectAnswer[0]">
+            <textarea class='form-control' id='CorrectAnswer' name="CorrectAnswer[0]" rows="6"></textarea>
         </div>
 
         <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswerComplete(1);',]) ?>
@@ -41,13 +41,13 @@ use yii\widgets\ActiveForm;
 
     <div id="lblQuestionType2" class="d-none">
         <div id="txtArea2" class="form-check" >
-           <div class="form-group">
-                <input class="form-check-input" type="radio" name="multiple" id="multipleSelection" value="" checked>
-                <input class="form-control" name="CorrectAnswer[0]" type="text">
-           </div>
-        </div>  
+            <div class="form-group">
+                <input class="form-check-input" type="radio" name="multiple[0]" id="multipleSelection" value="" checked>
+                <input class="form-control" name="CorrectAnswer[1]" type="text">
+            </div>
+        </div>
 
-        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswerMultiple(1);',]) ?>
+        <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer2' , 'onclick'=>'newAnswerMultiple(1);',]) ?>
         <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button>
     </div>
 
