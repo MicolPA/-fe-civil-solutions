@@ -66,7 +66,7 @@ class AnswersController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($IdQuestion)
     {
         $model = new Answers();
 
@@ -80,7 +80,7 @@ class AnswersController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            #'IdQuestion' => $IdQuestion,
+            'IdQuestion' => $IdQuestion,
 
         ]);
     }

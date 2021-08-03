@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($data){
 
-                    return(Html::a('Ver Respuestas', ['/answers/index','IdQuestion' => $data->IdQuestion], ['class' => 'btn btn-success']));
+                    return(Html::a('See Answers', ['/answers/index','IdQuestion' => $data->IdQuestion], ['class' => 'btn btn-success']));
 
                     }
             ],
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Imagen',
                 'format' => 'raw',
                 'value' => function($data){
-                        return(Html::button("Ver Imagen", ['',
+                        return(Html::button("See Image", ['',
                             'type'=>"button",
                             'class' => 'btn btn-success',
                             'onclick' => "showImg('/frontend/web/$data->Image');",

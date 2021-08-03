@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <div id="lblQuestionType" class="d-none">
         <div id="txtArea">
-            <input class='form-control' type="text" id='CorrectAnswer' name="CorrectAnswer[0]">
+            <input class='form-control' id='CorrectAnswer' name="CorrectAnswer[0]">
         </div>
 
         <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer' , 'onclick'=>'newAnswerComplete(1);',]) ?>

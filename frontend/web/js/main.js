@@ -33,7 +33,7 @@ function newAnswerComplete(valor){
     input.setAttribute("required", true);
 	
 	valor = valor + 1;
-    $(button).attr('onclick', 'newAnswer('+valor+');');
+    $(button).attr('onclick', 'newAnswerComplete('+valor+');');
 
     txtNewAnswer.appendChild(input);
 }
