@@ -74,12 +74,13 @@ class QuestionsController extends Controller
     
     public function actionCreate($IdCategory)
     {
+        $this->questionLimit($IdCategory);
+
         $model = new Questions();
         $model2 = new Answers();
         $post = $this->request->post();
         $model->IdCategory = $IdCategory; 
 
-        $this->questionLimit($IdCategory);
         if ($this->request->isPost) {
             
             if ($model->load($post)) {
@@ -188,18 +189,15 @@ class QuestionsController extends Controller
         ->where(['IdCategory' => $IdCategory])
         ->count();    
         
-        $limit = (new \yii\db\Query())
-        ->select(['Limit'])
-        ->from('Category')
+        $limit = Category::find()
+        ->select('Limit')
         ->where(['IdCategory' => $IdCategory])
         ->one(); 
 
-        if($count<=$limit){
-            
-
+        if($count >= $limit){
             return $this->redirect(['index',
-                    'IdCategory' => $IdCategory,
-                ]); 
+            'IdCategory' => $IdCategory,
+        ]); 
         }
 
     }
