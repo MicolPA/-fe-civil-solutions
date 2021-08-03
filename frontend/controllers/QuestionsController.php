@@ -210,8 +210,10 @@ class QuestionsController extends Controller
                 $model2->IdQuestion = $model->IdQuestion;
                 $model2->Answer = $post["CorrectAnswer"][$i];
                 $correct = $post['multiple'];
-                if(isset([$correct]['$1'])){
-                        $model2->CorrectAnswer = '1';
+
+                var_dump($correct);
+                if(isset([$correct]["$1"])){
+                    $model2->CorrectAnswer = '1';
                 }else{
                     $model2->CorrectAnswer = '0';
                 }                

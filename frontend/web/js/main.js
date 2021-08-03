@@ -44,7 +44,7 @@ function newAnswerMultiple(valor){
     var input = document.createElement("input");
     var input2 = document.createElement("input");
 
-    input2.setAttribute('name', 'multiple['+valor+']');
+    input2.setAttribute('name', 'multiple[]');
     input2.setAttribute('class', 'form-check-input');
     input2.setAttribute('type', 'radio');
 
@@ -54,7 +54,7 @@ function newAnswerMultiple(valor){
 	
     valor = valor + 1;
     $("#btnNewAnswer2").attr('onclick', 'newAnswerMultiple('+valor+');');
-    
+
     txtNewAnswer.appendChild(input2);
     txtNewAnswer.appendChild(input);
 

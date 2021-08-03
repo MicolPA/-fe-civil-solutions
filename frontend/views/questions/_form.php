@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
     ?>
 
     <div id="lblQuestionType" class="d-none">
-        <div id="txtArea">
+        <div id="txtArea" class="form-group  ">
             <textarea class='form-control' id='CorrectAnswer' name="CorrectAnswer[0]" rows="6"></textarea>
         </div>
 
@@ -41,10 +41,8 @@ use yii\widgets\ActiveForm;
 
     <div id="lblQuestionType2" class="d-none">
         <div id="txtArea2" class="form-check" >
-            <div class="form-group">
-                <input class="form-check-input" type="radio" name="multiple[0]" id="multipleSelection" value="" checked>
-                <input class="form-control" name="CorrectAnswer[1]" type="text">
-            </div>
+                <input class="form-check-input" type="radio" name="multiple[]" id="multipleSelection" value="" checked>
+                <input class="form-control" id='CorrectAnswer' name="CorrectAnswer[0]" type="text">
         </div>
 
         <?= Html::button('Agregar Respuesta', ['class' => 'btn btn-primary', 'id' => 'btnNewAnswer2' , 'onclick'=>'newAnswerMultiple(1);',]) ?>
