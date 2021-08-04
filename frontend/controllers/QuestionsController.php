@@ -212,7 +212,7 @@ class QuestionsController extends Controller
                 $correct = $post['multiple'];
 
                 var_dump($correct);
-                if(isset([$correct]["$1"])){
+                if(isset([$correct][1])){
                     $model2->CorrectAnswer = '1';
                 }else{
                     $model2->CorrectAnswer = '0';

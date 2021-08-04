@@ -92,7 +92,7 @@ class AnswersController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate( $id)
     {
         $model = $this->findModel($id);
 

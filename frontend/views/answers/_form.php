@@ -15,7 +15,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Answer')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'IdQuestion')->textInput(['maxlength' => true,
-    'value' => $_GET['IdQuestion'],
     'disabled' => true]) ?>
 
     <?= $form->field($model, 'CorrectAnswer')->textInput(['maxlength' => true]) ?>
