@@ -42,10 +42,9 @@ class QuestionsController extends Controller
      */
     public function actionIndex($IdCategory)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search($IdCategory);
-
-        
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -61,6 +60,7 @@ class QuestionsController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -74,6 +74,7 @@ class QuestionsController extends Controller
     
     public function actionCreate($IdCategory)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $this->questionLimit($IdCategory);
 
         $model = new Questions();
@@ -126,6 +127,7 @@ class QuestionsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -146,6 +148,7 @@ class QuestionsController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $model = $this->findModel($id);
         $cat = $model->IdCategory;
         $model->delete();

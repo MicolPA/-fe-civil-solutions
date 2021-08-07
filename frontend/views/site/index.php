@@ -19,19 +19,20 @@ $this->title = 'My Yii Application';
                 <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
                     <!-- Heading -->
                     <h1 class="display-4 text-center text-md-left mb-3">
-                        It's time to amplify your <strong class="text-primary">online business</strong>
+                        It's time to amplify your <strong class="text-primary">knowlegde</strong>
                     </h1>
                     <!-- Text -->
                     <p class="lead text-center text-md-left text-muted">
-                        Build a beautiful, modern website with flexible Bootstrap components built from scratch.
+                        Get started practicing for your exams.
                     </p>
                     <!-- Buttons -->
                     <div class="text-center text-md-left mt-5">
-                        <a href="#" class="btn btn-primary btn-icon" target="_blank">
-                            <span class="btn-inner--text">Get started</span>
+                        <a href="/frontend/web/site/login" class="btn btn-primary btn-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="btn-inner--text">Sign in</span>
                             <span class="btn-inner--icon"><i data-feather="chevron-right"></i></span>
                         </a>
-                        <a href="#" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank">See Illustrations</a>
+                        <a href="/frontend/web/signup" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank">Create an account</a>
                     </div>
                 </div>
             </div>

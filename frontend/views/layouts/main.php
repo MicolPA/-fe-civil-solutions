@@ -24,28 +24,57 @@ AppAsset::register($this);
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <?= Html::a('<i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none font-weight-bold text-primary']) ?>
+        <!-- Brand -->
+        <?= Html::a('<i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none font-weight-bold text-primary']) ?>
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <?= Html::a('Home', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                    <?= Html::a('Login', ['/site/login'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                    <!-- Button -->
+                    
 
-          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            
+                <?php else: ?>
+                    <?= Html::a('Home', ['/site/home'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                    <?= Html::a('My Grades', ['/exam/history'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                    <?= Html::a('Log Out', ['/site/logout'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                    <!-- Button -->
+                    
+                <?php endif ?>
+            </ul>
             <?php if (Yii::$app->user->isGuest): ?>
-                <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
-                <?= Html::a('LOGIN', ['/site/login'], ['class' => 'nav-link px-2 link-secondary']) ?>
-                <?= Html::a('REGISTER', ['/site/signup'], ['class' => 'nav-link px-2 link-secondary']) ?>
-
+                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/frontend/web/site/signup">
+                    Sign Up
+                </a>
             <?php else: ?>
-                <?= Html::a('HOME', ['/site/home'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/frontend/web/site/home">
+                    Take Exam
+                </a>
             <?php endif ?>
-          </ul>
-
-          <div class="col-md-3 text-end">
-            <a href="#" class="d-block link-dark text-decoration-none"> <span class="font-weight-bold text-success">Hola, Kuasimodo</span>
-            </a>
-          </div>
-        </header>
+            <!-- Mobile button -->
+            <div class="d-lg-none text-center">
+                 <?php if (Yii::$app->user->isGuest): ?>
+                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/frontend/web/site/signup">
+                    Sign Up
+                </a>
+            <?php else: ?>
+                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/frontend/web/site/home">
+                    Take Exam
+                </a>
+            <?php endif ?>
+            </div>
+        </div>
     </div>
+</nav>
+  
 
 <main role="main" class="flex-shrink-0">
     <div class="container">

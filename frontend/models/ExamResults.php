@@ -11,6 +11,7 @@ use Yii;
  * @property int|null $IdExam
  * @property int|null $IdQuestion
  * @property int|null $IdQuestionType
+ * @property int|null $LogId
  * @property int|null $Correct
  * @property int|null $UserId
  * @property string|null $Date
@@ -31,7 +32,7 @@ class Examresults extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IdExam', 'IdQuestion', 'IdQuestionType', 'Correct', 'UserId'], 'integer'],
+            [['IdExam', 'IdQuestion', 'IdQuestionType', 'LogId', 'Correct', 'UserId'], 'integer'],
             [['Date'], 'safe'],
         ];
     }
@@ -46,6 +47,7 @@ class Examresults extends \yii\db\ActiveRecord
             'IdExam' => 'Id Exam',
             'IdQuestion' => 'Id Question',
             'IdQuestionType' => 'Id Question Type',
+            'LogId' => 'Log ID',
             'Correct' => 'Correct',
             'UserId' => 'User ID',
             'Date' => 'Date',

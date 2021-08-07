@@ -38,6 +38,7 @@ class AnswersController extends Controller
      */
     public function actionIndex($IdQuestion)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $searchModel = new AnswersSearch();
         $dataProvider = $searchModel->search($IdQuestion);
 
@@ -57,6 +58,7 @@ class AnswersController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -69,6 +71,7 @@ class AnswersController extends Controller
      */
     public function actionCreate($IdQuestion)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $model = new Answers();
         $question = Questions::findOne($IdQuestion);
 
@@ -99,6 +102,7 @@ class AnswersController extends Controller
      */
     public function actionUpdate( $id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -119,6 +123,7 @@ class AnswersController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

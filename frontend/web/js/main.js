@@ -83,7 +83,7 @@ function countdown( elementName, minutes, seconds){
         msLeft = endTime - (+new Date);
         if ( msLeft < 1000 ) {
             element.innerHTML = "Time out";
-            document.getElementById("finishtime").value = "1"; 
+            // document.getElementById("finishtime").value = "1"; 
             document.getElementById("form-test").submit();
         } else {
             time = new Date( msLeft );
@@ -160,6 +160,7 @@ function saveAnswer(question_id, question_type, multiple, complete){
             multiple: multiple,
             complete: complete,
             exam_id: $("#exam_id").val(),
+            log_id: $("#log_id").val(),
             _csrf: "<?=Yii::$app->request->getCsrfToken()?>"
         },
         success: function (data) {

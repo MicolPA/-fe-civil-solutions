@@ -17,7 +17,7 @@ $i = 0;
 	<div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2 class="font-weight-light h1">Exam <span class="float-right h5 mt-3 bg-warning pl-3 pr-3"><i class="fas fa-stopwatch"></i> Time left: <span id="time"><?= $time ?> min</span></span></h2>
+			<h2 class="font-weight-light h1">Exam <span class="float-right h5 mt-3"><i class="fas fa-stopwatch"></i> Time left: <span id="time"><?= $time ?> min.</span></span></h2>
 		</div>
 	</div>
 	<div class="list-wrapper row">
@@ -73,9 +73,10 @@ $i = 0;
 		</div>
 	</div>
 </div>
-<input type="hidden" id='total' value="<?= $i ?>">
+<input type="hidden" name='total' id='total' value="<?= $i ?>">
 <input type="hidden" id='current' value="1">
-<input type="hidden" id='exam_id' value="<?= $id ?>">
+<input type="hidden" name='exam_id' id='exam_id' value="<?= $id ?>">
+<input type="hidden" name='log_id' id='log_id' value="<?= $log->Id ?>">
 </form>
 <?= $this->render('_modal') ?>
 

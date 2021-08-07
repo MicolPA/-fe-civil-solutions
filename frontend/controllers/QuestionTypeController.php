@@ -37,6 +37,7 @@ class QuestionTypeController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $searchModel = new QuestionTypeSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -54,6 +55,7 @@ class QuestionTypeController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

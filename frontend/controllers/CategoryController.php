@@ -37,6 +37,7 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -54,6 +55,7 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -66,6 +68,7 @@ class CategoryController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $model = new Category();
 
         if ($this->request->isPost) {
@@ -97,6 +100,7 @@ class CategoryController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -117,6 +121,7 @@ class CategoryController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->layout = '@app/views/layouts/main-admin';
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

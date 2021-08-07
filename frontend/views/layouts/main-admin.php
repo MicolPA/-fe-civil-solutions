@@ -24,26 +24,39 @@ AppAsset::register($this);
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
     <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <?= Html::a('<i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none font-weight-bold text-primary']) ?>
-
-          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('CATEGORY', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('QUESTIONS', ['/questions/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('QUESTIONSTYPE', ['/question-type/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+        <!-- Brand -->
+        <a class="navbar-brand d-none d-lg-flex" href="/frontend/web/category">
+            <i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>
+        </a>
+        <a class="navbar-brand d-lg-none" href="/frontend/web/category">
+            <i class="far fa-comments mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h6 pt-3">FE CIVIL SOLUTIONS</span>
+        </a>
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                <?= Html::a('Home', ['/category'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                <?= Html::a('Category', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                <!-- <?//= Html::a('Question', ['/questions/index'], ['class' => 'nav-link px-2 link-secondary']) ?> -->
+                <?= Html::a('Log Out', ['/site/logout'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            </ul>
             
-          </ul>
-
-          <div class="col-md-3 text-end">
-            <?= Html::a('LOGOUT', ['/site/logout'], ['class' => 'nav-link px-2 link-secondary text-danger text-right']) ?>
-          </div>
-        </header>
+            <!-- Mobile button -->
+            <div class="d-lg-none text-center">
+                <a href="https://webpixels.io/themes/quick-website-ui-kit" class="btn btn-block btn-sm btn-warning">See more details</a>
+            </div>
+        </div>
     </div>
+</nav>
 
 <main role="main" class="flex-shrink-0">
-    <div class="container">
+    <div class="container pt-4">
         <?= $content ?>
     </div>
 </main>

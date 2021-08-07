@@ -19,15 +19,15 @@ class m210801_215009_new_table_exam_logs extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
             
-        // $this->createTable('{{%ExamGenerated}}', [
-        //     'Id' => $this->primaryKey(),
-        //     'Categories' => $this->string(),
-        //     'Count' => $this->string(),
-        //     'Time' => $this->integer(),
-        //     'Type' => $this->integer()->defaultValue(1),
-        //     'UserId' => $this->integer(),
-        //     'Date' => $this->dateTime(),
-        // ], $tableOptions);
+        $this->createTable('{{%ExamGenerated}}', [
+            'Id' => $this->primaryKey(),
+            'Categories' => $this->string(),
+            'Count' => $this->string(),
+            'Time' => $this->integer(),
+            'Type' => $this->integer()->defaultValue(1),
+            'UserId' => $this->integer(),
+            'Date' => $this->dateTime(),
+        ], $tableOptions);
 
 
         $this->createTable('{{%ExamResults}}', [
@@ -47,7 +47,7 @@ class m210801_215009_new_table_exam_logs extends Migration
             'Id' => $this->primaryKey(),
             'IdExam' => $this->integer(),
             'StartedAt' => $this->dateTime(),
-            'FinistAt' => $this->dateTime(),
+            'FinishAt' => $this->dateTime(),
             'UserId' => $this->integer(),
         ], $tableOptions);
 

@@ -84,6 +84,7 @@ class SiteController extends Controller
 
     public function actionHome(){
 
+        $this->isAdmin();
         $model = new Questions();
         $categories = \app\models\Category::find()->all();
 
@@ -91,6 +92,14 @@ class SiteController extends Controller
             'model' => $model,
             'categories' => $categories,
         ]);
+    }
+
+    function isAdmin(){
+        if (Yii::$app->user->identity->RolId == 1) {
+            return $this->redirect(['/category']);
+        }else{
+            return true;
+        }
     }
 
     /**
@@ -120,7 +129,7 @@ class SiteController extends Controller
     function getTypeRole(){
         //Admin
         if (Yii::$app->user->identity->RolId == 1) {
-            return $this->redirect(['/admin']);
+            return $this->redirect(['/category']);
         }else{
             return $this->redirect(['home']);
         }
@@ -181,7 +190,7 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+            return $this->redirect(['login']);
         }
 
         return $this->render('signup', [
