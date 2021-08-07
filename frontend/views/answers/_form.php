@@ -12,12 +12,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'IdQuestion')->textInput(['maxlength' => true,'disabled' => true, 'value' => $question->Question])->label('Question') ?>
+
     <?= $form->field($model, 'Answer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'IdQuestion')->textInput(['maxlength' => true,
-    'disabled' => true]) ?>
-
-    <?= $form->field($model, 'CorrectAnswer')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

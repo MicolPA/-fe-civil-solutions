@@ -26,8 +26,10 @@ class AppAsset extends AssetBundle
         'js/bootstrap.bundle.min.js',
         'js/all.min.js',
         'js/quick-website.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML',
+        'https://polyfill.io/v3/polyfill.min.js?features=es6',
+        'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
         'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.4/jquery.simplePagination.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

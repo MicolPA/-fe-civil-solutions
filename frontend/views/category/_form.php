@@ -8,21 +8,16 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="category-form">
+<div class="category-form ">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'Name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Count')->textInput(['type' => 'number',
-        ])
-      
-    ?>
-
     <?= $form->field($model, 'Limit')->textInput(['type' => 'number']) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="form-group text-right">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-info btn-sm pr-5 pl-5']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -44,7 +44,7 @@ function newAnswerMultiple(valor){
     var input = document.createElement("input");
     var input2 = document.createElement("input");
 
-    input2.setAttribute('name', 'multiple[]');
+    input2.setAttribute('name', 'multiple['+valor+']');
     input2.setAttribute('class', 'form-check-input');
     input2.setAttribute('type', 'radio');
 
@@ -61,14 +61,118 @@ function newAnswerMultiple(valor){
 }
 
 function showImg(url){
-        swal({
-            title: "",
-            text: '',
-            icon: url,
-          });
-    
+    swal({
+        title: "",
+        text: '',
+        icon: url,
+      });
+
+}
+
+function countdown( elementName, minutes, seconds){
+
+    var element, endTime, hours, mins, msLeft, time;
+
+    function twoDigits( n )
+    {
+        return (n <= 9 ? "0" + n : n);
     }
 
+    function updateTimer()
+    {
+        msLeft = endTime - (+new Date);
+        if ( msLeft < 1000 ) {
+            element.innerHTML = "Time out";
+            document.getElementById("finishtime").value = "1"; 
+            document.getElementById("form-test").submit();
+        } else {
+            time = new Date( msLeft );
+            hours = time.getUTCHours();
+            mins = time.getUTCMinutes();
+            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+        }
+    }
+
+    element = document.getElementById( elementName );
+    endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+    updateTimer();
+}
+
+
+function checkAnswer(){
+
+    limit = parseInt($("#total").val());
+    current = parseInt($("#current").val());
+    id = current + 1;
+    $("#current").val(id);
+    // console.log(current);
+    // console.log(id);
+    // console.log(limit);
+
+    if (id == limit) {
+        setTimeout(function(){
+            $("#nextButton").val('Finish Test');
+        },500)
+    }
+
+    getAnswerInfo(current);
+    //$("#customRadio42").is(':checked')
+
+}
+
+
+function getAnswerInfo(question_pos){
+
+    multiple = null;
+    complete = null;
+    question_id = $(".question_"+question_pos).val();
+    question_type = $(".question_type_"+question_pos).val();
+
+    if (question_type == 2) {
+        if($("#content_"+question_pos+" .correct").is(':checked')) {
+            multiple = 1;
+            // swal('Correcto', 'Respuesta correcta', 'success');
+        }else{
+            multiple = 0;
+            // swal('Incorrecto', 'Respuesta incorrecta', 'error');
+        }
+    }else{
+        complete = $(".answer_" + question_pos).val();
+    }
+
+    saveAnswer(question_id, question_type, multiple, complete);
+    // console.log(question_pos);
+    // console.log(question_type);
+    // console.log(multiple);
+    // console.log(complete);
+}
+
+
+function saveAnswer(question_id, question_type, multiple, complete){
+    $.ajax({
+        url: "/frontend/web/exam/save-answer",
+        type: 'get',
+        dataType: 'json',
+        data: {
+            question_id: question_id,
+            question_type: question_type,
+            multiple: multiple,
+            complete: complete,
+            exam_id: $("#exam_id").val(),
+            _csrf: "<?=Yii::$app->request->getCsrfToken()?>"
+        },
+        success: function (data) {
+
+            console.log(data);
+
+        }, error: function (xhr, ajaxOptions, thrownError){
+            console.log(thrownError);
+            console.log(xhr);
+            console.log(ajaxOptions);
+        }
+    });
+}
 
 /* function deleteAnswer(){
     let txtNewAnswer = document.getElementById('txtArea');

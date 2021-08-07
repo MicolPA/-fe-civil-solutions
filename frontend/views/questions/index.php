@@ -10,61 +10,74 @@ $this->title = 'Questions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="questions-index">
-
     <h1><?= Html::encode($this->title) ?> </h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
+    <div class="box box-primary table-responsive">
+        <?= GridView::widget([
 
-            [
-                'label' => 'Id Question',
-                'attribute' => 'IdQuestion',
-            ],
+            'dataProvider' => $dataProvider,
+            'columns' => [
 
-            [
-                'label' => 'Question',
-                'attribute' => 'Question',
-            ],
+                [
+                    'label' => 'Id Question',
+                    'attribute' => 'IdQuestion',
+                ],
 
-            [
-                'label' => 'Question Type',
-                'attribute' => 'idQuestionType.Name',
-            ],
+                [
 
-            [
-                'label' => 'Category',
-                'attribute' => 'idCategory.Name',
-            ],
+                    'label' => 'Question',
+                    'attribute' => 'Question',
+                    'contentOptions' => [
+                       'style' => [
+                           'max-width' => '600px',
+                           'white-space' => 'normal',
+                       ],
+                   ],
+                ],
 
-            [
-                'label' => 'Answers',
-                'format' => 'raw',
-                'value' => function($data){
+                [
+                    'label' => 'Question Type',
+                    'attribute' => 'idQuestionType.Name',
+                ],
 
-                    return(Html::a('See Answers', ['/answers/index','IdQuestion' => $data->IdQuestion], ['class' => 'btn btn-success']));
+                [
+                    'label' => 'Category',
+                    'attribute' => 'idCategory.Name',
+                ],
 
+                [
+                    'label' => 'Answers',
+                    'format' => 'raw',
+                    'value' => function($data){
+
+                        return(Html::a('See Answers', ['/answers/index','IdQuestion' => $data->IdQuestion], ['class' => 'font-weight-bold text-primary']));
+
+                        }
+                ],
+
+                [
+                    'label' => 'Imagen',
+                    'format' => 'raw',
+                    'value' => function($data){
+                        if ($data->Image) {
+                            return(Html::button("See Image", ['',
+                                'type'=>"button",
+                                'class' => 'btn btn-primary btn-xs',
+                                'onclick' => "showImg('/frontend/web/$data->Image');",
+                            ]));            
+                        }else{
+                            return 'NO IMAGE';
+                        }       
                     }
+                ],
+                ['class' => 'yii\grid\ActionColumn'],
+
+
             ],
-
-            [
-                'label' => 'Imagen',
-                'format' => 'raw',
-                'value' => function($data){
-                        return(Html::button("See Image", ['',
-                            'type'=>"button",
-                            'class' => 'btn btn-success',
-                            'onclick' => "showImg('/frontend/web/$data->Image');",
-                        ]));
-                    }
-            ],
-            ['class' => 'yii\grid\ActionColumn'],
-
-
-        ],
-    ]); ?>
+        ]); ?>
+    </div>
 
 
 </div>

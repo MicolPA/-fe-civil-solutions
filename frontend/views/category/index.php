@@ -13,14 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?> <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success btn-sm float-right']) ?></h1>
 
-    <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php 
-    ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -29,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'IdCategory',
+            // 'IdCategory',
             'Name',
             [
                 'label' => 'Count',

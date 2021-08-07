@@ -12,11 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="answers-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?> <?= Html::a('Create Answer', ['create','IdQuestion' => $IdQuestion], ['class' => 'btn btn-success btn-sm float-right']) ?></h1>
 
     <p>
-        <!-- <?php $IdQuestion = $_GET['IdQuestion']; ?>
-        <?= Html::a('Create Answer', ['create','IdQuestion' => $IdQuestion], ['class' => 'btn btn-success']) ?> -->
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,10 +24,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'IdAnswer',
-            'Answer',
-            'IdQuestion',
-            'CorrectAnswer',
+            // 'IdAnswer',
+            [
+
+                'label' => 'Answer',
+                'attribute' => 'Answer',
+                'contentOptions' => [
+                   'style' => [
+                       'max-width' => '600px',
+                       'white-space' => 'normal',
+                   ],
+               ],
+            ],
+            // 'Answer',
+            // 'IdQuestion',
+            // 'CorrectAnswer',
+            [
+                'label' => 'CorrectAnswer',
+                'format' => 'raw',
+                'value' => function($data){
+
+                    return $data->CorrectAnswer ? "SI" : "NO";
+
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

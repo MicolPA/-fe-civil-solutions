@@ -47,7 +47,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    // 'logout' => ['post'],
                 ],
             ],
         ];
@@ -76,6 +76,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            $this->getTypeRole();
+        }
         return $this->render('index');
     }
 
@@ -119,7 +122,7 @@ class SiteController extends Controller
         if (Yii::$app->user->identity->RolId == 1) {
             return $this->redirect(['/admin']);
         }else{
-            return $this->goHome();
+            return $this->redirect(['home']);
         }
     }
 

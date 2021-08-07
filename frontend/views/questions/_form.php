@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['enableClientScript' => false]); ?>
 
-    <?= $form->field($model, 'Question')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'Question')->textArea(['maxlength' => true]) ?>
 
 
     <?= $form->field($model, 'IdQuestionType')->dropDownList(

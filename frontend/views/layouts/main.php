@@ -29,8 +29,15 @@ AppAsset::register($this);
             <?= Html::a('<i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none font-weight-bold text-primary']) ?>
 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
-            <?= Html::a('CATEGORY', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            
+            <?php if (Yii::$app->user->isGuest): ?>
+                <?= Html::a('HOME', ['/site/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                <?= Html::a('LOGIN', ['/site/login'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                <?= Html::a('REGISTER', ['/site/signup'], ['class' => 'nav-link px-2 link-secondary']) ?>
+
+            <?php else: ?>
+                <?= Html::a('HOME', ['/site/home'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            <?php endif ?>
           </ul>
 
           <div class="col-md-3 text-end">

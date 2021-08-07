@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 <div class="row">
 		<!-- div practice -->
 	<div class="col-md-6">
-		<?php $form = ActiveForm::begin(['enableClientScript' => false]); ?>
+		<?php $form = ActiveForm::begin(['enableClientScript' => false, 'action' => '/frontend/web/exam/generate-exam']); ?>
 		    <div class="card p-4">
 		    	<div class="row">
 			    	<div class="col-md-12">
@@ -71,7 +71,17 @@ use yii\widgets\ActiveForm;
 		        	</div>
 		        	<div class="col-md-3">
 		        		<div class="form-group">
-						    <input type="number" class="form-control form-control-sm input-question-total" placeholder="Total" readonly>
+						    <input type="number" class="form-control form-control-sm input-question-total" placeholder="Total" required readonly>
+						</div>
+		        	</div>
+		        	<div class="col-md-9">
+		        		<div class="p-3">
+						    <p>Time (minutes):</p>
+						</div>
+		        	</div>
+		        	<div class="col-md-3">
+		        		<div class="form-group">
+						    <input type="number" class="form-control form-control-sm" placeholder="Total" name="time" required>
 						</div>
 		        	</div>
 			        <div class="col-md-12">
@@ -140,7 +150,17 @@ use yii\widgets\ActiveForm;
 		        	</div>
 		        	<div class="col-md-3">
 		        		<div class="form-group">
-						    <input type="number" class="form-control form-control-sm input-question-total" placeholder="Total" readonly>
+						    <input type="number" class="form-control form-control-sm input-question-total" placeholder="Total" readonly required>
+						</div>
+		        	</div>
+		        	<div class="col-md-9">
+		        		<div class="p-3">
+						    <p>Time (minutes):</p>
+						</div>
+		        	</div>
+		        	<div class="col-md-3">
+		        		<div class="form-group">
+						    <input type="number" class="form-control form-control-sm" placeholder="Total" name="time" required>
 						</div>
 		        	</div>
 			        <div class="col-md-12">

@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use app\models\Answers;
+use app\models\Questions;
 use frontend\models\AnswersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -43,7 +44,7 @@ class AnswersController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'IdCategory' => $IdQuestion,
+            'IdQuestion' => $IdQuestion,
 
         ]);
     }
@@ -69,10 +70,14 @@ class AnswersController extends Controller
     public function actionCreate($IdQuestion)
     {
         $model = new Answers();
+        $question = Questions::findOne($IdQuestion);
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->IdAnswer]);
+            if ($model->load($this->request->post())) {
+                $model->IdQuestion = $IdQuestion;
+                $model->CorrectAnswer = '1';
+                $model->save();
+                return $this->redirect(['index', 'IdQuestion' => $IdQuestion]);
             }
         } else {
             $model->loadDefaultValues();
@@ -80,7 +85,7 @@ class AnswersController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'IdQuestion' => $IdQuestion,
+            'question' => $question,
 
         ]);
     }

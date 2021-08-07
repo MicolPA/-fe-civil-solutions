@@ -33,11 +33,11 @@ AppAsset::register($this);
             <?= Html::a('CATEGORY', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
             <?= Html::a('QUESTIONS', ['/questions/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
             <?= Html::a('QUESTIONSTYPE', ['/question-type/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+            
           </ul>
 
           <div class="col-md-3 text-end">
-            <a href="#" class="d-block link-dark text-decoration-none"> <span class="font-weight-bold text-success">Hola, Kuasimodo</span>
-            </a>
+            <?= Html::a('LOGOUT', ['/site/logout'], ['class' => 'nav-link px-2 link-secondary text-danger text-right']) ?>
           </div>
         </header>
     </div>

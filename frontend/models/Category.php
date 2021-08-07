@@ -45,7 +45,7 @@ class Category extends \yii\db\ActiveRecord
             'IdCategory' => 'Id Category',
             'Name' => 'Name',
             'Count' => 'Count',
-            'Limit' => 'Limit',
+            'Limit' => "Question's limit",
         ];
     }
 

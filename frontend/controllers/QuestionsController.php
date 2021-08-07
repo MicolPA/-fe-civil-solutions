@@ -129,7 +129,7 @@ class QuestionsController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdQuestion]);
+            return $this->redirect(['index', 'IdCategory' => $model->IdCategory]);
         }
 
         return $this->render('update', [
@@ -146,9 +146,11 @@ class QuestionsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $cat = $model->IdCategory;
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'IdCategory' => $cat]);
     }
 
     /**
@@ -170,17 +172,17 @@ class QuestionsController extends Controller
     protected function subirFoto(Questions $model) 
     {
 
-            $model->archivo = UploadedFile::getInstance($model, 'archivo');
+        $model->archivo = UploadedFile::getInstance($model, 'archivo');
 
-                if($model->archivo){
-                    $imageRute = 'images/' .time()."_".$model->archivo->baseName.".".$model->archivo->extension;
-                    if( $model->archivo->saveAs($imageRute)){
-                        $model->Image = $imageRute;
+            if($model->archivo){
+                $imageRute = 'images/' .time()."_".$model->archivo->baseName.".".$model->archivo->extension;
+                if( $model->archivo->saveAs($imageRute)){
+                    $model->Image = $imageRute;
 
-                    }
                 }
+            }
 
-                $model->save(false);
+            $model->save(false);
     }
 
     protected function questionLimit($IdCategory){
@@ -205,21 +207,22 @@ class QuestionsController extends Controller
         for ($i=0; $i <= count($post["CorrectAnswer"]); $i++) { 
                     
             if (isset($post["CorrectAnswer"][$i])) {
-                $model2 = new Answers();
+                if ($post["CorrectAnswer"][$i]) {
+                    $model2 = new Answers();
 
-                $model2->IdQuestion = $model->IdQuestion;
-                $model2->Answer = $post["CorrectAnswer"][$i];
-                $correct = $post['multiple'];
+                    $model2->IdQuestion = $model->IdQuestion;
+                    $model2->Answer = $post["CorrectAnswer"][$i];
+                    $correct = $post['multiple'];
 
-                var_dump($correct);
-                if(isset([$correct][1])){
-                    $model2->CorrectAnswer = '1';
-                }else{
-                    $model2->CorrectAnswer = '0';
-                }                
-                if(!$model2->save()){
-                    print_r($model2->errors);
-                    exit;
+                    if(isset([$correct][$i])){
+                        $model2->CorrectAnswer = '1';
+                    }else{
+                        $model2->CorrectAnswer = '0';
+                    }                
+                    if(!$model2->save()){
+                        print_r($model2->errors);
+                        exit;
+                    }
                 }
             }
             
