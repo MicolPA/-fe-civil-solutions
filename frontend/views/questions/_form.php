@@ -19,6 +19,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Question')->textArea(['maxlength' => true]) ?>
 
+    <div class="form-group mt-3">
+        <?= $form->field($model, 'IdCategory')->dropDownList(
+        ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
+        [
+            'id' => 'CategorySelect',
+            'disabled' => 'disabled',
+        ]
+        
+        )->label('Category') 
+    ?>
+   </div>
+
+    <div class="div-lab">
+        <?= $form->field($model, 'archivo')->fileInput(['accept' => 'image/*'])->label('Upload Image')?>
+    </div>
+
 
     <?= $form->field($model, 'IdQuestionType')->dropDownList(
         ArrayHelper::map(QuestionType::find()->all(), 'IdQuestionType','Name'),
@@ -51,21 +67,7 @@ use yii\widgets\ActiveForm;
         <!-- <button type="button" onclick="deleteAnswer();" class="btn btn-dark">Eliminar respuesta</button> -->
     </div>
 
-   <div class="form-group mt-3">
-        <?= $form->field($model, 'IdCategory')->dropDownList(
-        ArrayHelper::map(Category::find()->all(), 'IdCategory','Name'),
-        [
-            'id' => 'CategorySelect',
-            'disabled' => 'disabled',
-        ]
-        
-        ) 
-    ?>
-   </div>
-
-    <div class="div-lab">
-        <?= $form->field($model, 'archivo')->fileInput(['accept' => 'image/*'])->label('Upload Image')?>
-    </div>
+   
 
     <div class="form-group">
         <?= Html::submitButton('Save question', ['class' => 'btn btn-success btn-sm float-right pr-5 pl-5']) ?>

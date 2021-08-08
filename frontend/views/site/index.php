@@ -32,7 +32,7 @@ $this->title = 'My Yii Application';
                             <span class="btn-inner--text">Sign in</span>
                             <span class="btn-inner--icon"><i data-feather="chevron-right"></i></span>
                         </a>
-                        <a href="/frontend/web/signup" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank">Create an account</a>
+                        <a href="/frontend/web/site/signup" class="btn btn-neutral btn-icon d-none d-lg-inline-block">Create an account</a>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mb-4">
     <div class="container">
         <!-- Brand -->
         <a class="navbar-brand d-none d-lg-flex" href="/">

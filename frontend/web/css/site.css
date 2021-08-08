@@ -85,7 +85,7 @@ a.desc:after {
     display: none !important;
 }
 
-.next, .prev{
+.next{
     display: block !important;
     background: #1aaa7d !important;
     color: white !important;
