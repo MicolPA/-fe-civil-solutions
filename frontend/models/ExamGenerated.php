@@ -22,7 +22,7 @@ class ExamGenerated extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'examgenerated';
+        return 'ExamGenerated';
     }
 
     /**
