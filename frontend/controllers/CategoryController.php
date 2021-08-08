@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use app\models\Category;
 use app\models\CategorySearch;
 use yii\web\Controller;
@@ -72,15 +73,12 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($this->request->isPost) {
-            if($model->Count == 0){
-                if ($model->load($this->request->post()) && $model->save()) {
-                    return $this->redirect(['index', 'id' => $model->IdCategory]);
-                }
-            }else{
-                if ($model->load($this->request->post()) && $model->save()) {
-                    return $this->redirect(['index', 'id' => $model->IdCategory]);
-                }
+            if ($model->load($this->request->post()) && $model->save()) {
+                
             }
+
+            Yii::$app->session->setFlash('success1', "Category saved successfully");
+            return $this->redirect(['index']); 
             
         } else {
             $model->loadDefaultValues();
