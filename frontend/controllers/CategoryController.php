@@ -73,11 +73,9 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                
-            }else{
-                print_r($model->errors);
-                exit;
+            if ($model->load($this->request->post())) {
+                $model->Count = 0;
+                $model->save();
             }
 
             Yii::$app->session->setFlash('success1', "Category saved successfully");
