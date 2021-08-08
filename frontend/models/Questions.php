@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\Category;
+use app\models\Questiontype;
 
 /**
  * This is the model class for table "questions".
