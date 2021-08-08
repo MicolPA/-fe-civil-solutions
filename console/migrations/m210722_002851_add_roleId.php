@@ -12,7 +12,7 @@ class m210722_002851_add_roleId extends Migration
      */
     public function safeUp()
     {
-        $this->addForeignKey('FKRol', '{{%User}}', 'RolId', '{{%Rols}}', 'IdRol', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('FKRol', '{{%user}}', 'RolId', '{{%Rols}}', 'IdRol', 'CASCADE', 'CASCADE');
 
     }
 
