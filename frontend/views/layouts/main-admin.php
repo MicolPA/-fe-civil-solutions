@@ -42,7 +42,7 @@ AppAsset::register($this);
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
                 <?= Html::a('Home', ['/category'], ['class' => 'nav-link px-2 link-secondary']) ?>
-                <?= Html::a('Category', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
+                <?= Html::a('Categories', ['/category/index'], ['class' => 'nav-link px-2 link-secondary']) ?>
                 <!-- <?//= Html::a('Question', ['/questions/index'], ['class' => 'nav-link px-2 link-secondary']) ?> -->
                 <?= Html::a('Log Out', ['/site/logout'], ['class' => 'nav-link px-2 link-secondary']) ?>
             </ul>
@@ -70,6 +70,15 @@ AppAsset::register($this);
     </div>
 </footer>
 
+
+<?php if(Yii::$app->session->hasFlash('success1')):?>
+    <?php
+    $msj = Yii::$app->session->getFlash('success1');
+    echo '<script type="text/javascript">';
+    echo "setTimeout(function () { swal('Correct','$msj','success');";
+    echo '}, 1000);</script>';
+    ?>
+<?php endif; ?>  
 <?php $this->endBody() ?>
 </body>
 </html>

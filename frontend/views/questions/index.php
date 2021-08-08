@@ -10,7 +10,13 @@ $this->title = 'Questions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="questions-index">
-    <h1><?= Html::encode($this->title) ?> </h1>
+    <h1><?= Html::encode($this->title) ?>  
+
+    <?php if ($create): ?>
+        <?= Html::a('Create Question', ['create', 'IdCategory' => $IdCategory], ['class' => 'btn btn-success btn-sm float-right mt-3']) ?>
+    <?php endif ?>
+        
+    </h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -72,7 +78,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         }       
                     }
                 ],
-                ['class' => 'yii\grid\ActionColumn'],
+                ['class' => 'yii\grid\ActionColumn', 'template'=>"{update} - {delete}" ],
+                // ['class' => 'yii\grid\ActionColumn'],
 
 
             ],

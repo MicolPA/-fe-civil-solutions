@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use app\models\Answers;
 use app\models\Questions;
 use frontend\models\AnswersSearch;
@@ -100,17 +101,20 @@ class AnswersController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate( $id)
+    public function actionUpdate($id, $IdQuestion)
     {
         $this->layout = '@app/views/layouts/main-admin';
         $model = $this->findModel($id);
+        $question = Questions::findOne($IdQuestion);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->IdAnswer]);
+            Yii::$app->session->setFlash('success1', "Answer updated successfully");
+            return $this->redirect(['index', 'IdQuestion' => $model->IdQuestion]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'question' => $question,
         ]);
     }
 
@@ -124,9 +128,11 @@ class AnswersController extends Controller
     public function actionDelete($id)
     {
         $this->layout = '@app/views/layouts/main-admin';
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $ques = $model->IdQuestion;
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'IdQuestion' => $ques]);
     }
 
     /**

@@ -44,12 +44,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($data){
 
-                    return $data->CorrectAnswer ? "SI" : "NO";
+                    if ($data->idQuestion->IdQuestionType == 2) {
+                        return $data->CorrectAnswer ? "<b class='text-success'>YES</b>" : "<b class='text-warning'>NO</b>";
+                    }else{
+                        return "<b class='text-success'>YES</b>";
+                    }
 
                 }
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn', 'template'=>"{update} - {delete}" ],
+            // ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label' => '',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $update =  Html::a('<i class="fas fa-pencil-alt text-primary mr-2"></i>', ['update', 'id' => $data->IdAnswer, 'IdQuestion' => Yii::$app->request->get()['IdQuestion']], []);
+                    $delete = Html::a('<i class="fas fa-trash text-danger mt-2"></i>', ['delete', 'id' => $data->IdAnswer], [
+                        'data' => [
+                            'confirm' => '¿Está seguro/a que desea eliminar este registro?',
+                            'method' => 'post',
+                        ],
+                    ]);
+                    return "$update $delete";
+                },
+            ],  
+            // ['class' => 'yii\grid\ActionColumn', 'template'=>"{update} - {delete}" ],
         ],
     ]); ?>
 

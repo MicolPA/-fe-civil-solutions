@@ -1,3 +1,14 @@
+jQuery('input[type=file]').change(function(){
+    // console.log('aqui');
+    var filename = jQuery(this).val().split('\\').pop();
+    var idname = jQuery(this).attr('id');
+    console.log(jQuery(this));
+    console.log(filename);
+    console.log(idname);
+    jQuery('div.field-'+idname+' label').html("<span class='text-success font-12'>CARGADA</span>");
+    // jQuery('div.field-'+idname+' label').attr("style", 'padding-left:1rem !important;padding-right: 1rem !important');
+});
+
 function questionLimit(){
     swal({
         title: "Opps!",
@@ -24,12 +35,12 @@ function questionType(){
 function newAnswerComplete(valor){
 
     let txtNewAnswer = document.getElementById('txtArea');
-    var input = document.createElement("textarea");
+    var input = document.createElement("input");
     var button = document.getElementById('btnNewAnswer');
 
-    input.setAttribute('rows', 6);
+    input.setAttribute('placeholder', 'Answer');
 	input.setAttribute('name', 'CorrectAnswer['+valor+']');
-    input.setAttribute('class', 'form-control');
+    input.setAttribute('class', 'form-control mt-2');
     input.setAttribute("required", true);
 	
 	valor = valor + 1;
@@ -44,13 +55,16 @@ function newAnswerMultiple(valor){
     var input = document.createElement("input");
     var input2 = document.createElement("input");
 
-    input2.setAttribute('name', 'multiple['+valor+']');
-    input2.setAttribute('class', 'form-check-input');
+    // input2.setAttribute('name', 'multiple['+valor+']');
+    input2.setAttribute('name', 'multiple');
+    input2.setAttribute('value', valor);
+    input2.setAttribute('class', 'form-check-input mt-2');
     input2.setAttribute('type', 'radio');
 
 	input.setAttribute('name', 'CorrectAnswer['+valor+']');
-    input.setAttribute('class', 'form-control');
+    input.setAttribute('class', 'form-control mt-2');
     input.setAttribute("required", true);
+    input.setAttribute("placeholder", 'Answer');
 	
     valor = valor + 1;
     $("#btnNewAnswer2").attr('onclick', 'newAnswerMultiple('+valor+');');

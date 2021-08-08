@@ -12,9 +12,9 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/site.css?v=1',
         'css/main.css',
-        'css/bootstrap.css',
+        'css/bootstrap.css?v=1',
         'css/all.min.css',
         'css/quick-website.css',
         'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css',

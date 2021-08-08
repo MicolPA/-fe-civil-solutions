@@ -43,12 +43,22 @@ class QuestionsController extends Controller
     public function actionIndex($IdCategory)
     {
         $this->layout = '@app/views/layouts/main-admin';
+
+        $create = false;
+        $cat = Category::findOne($IdCategory);
+        $count = Questions::find()->where(['IdCategory' => $IdCategory])->count();   
+
+        if ($count < $cat['Limit']) {
+            $create = true;
+        }
         $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search($IdCategory);
 
         return $this->render('index', [
+            'create' => $create,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'IdCategory' => $IdCategory,
         ]);
     }
 
@@ -84,7 +94,7 @@ class QuestionsController extends Controller
 
         if ($this->request->isPost) {
             
-             if ($model->load($post)) {
+            if ($model->load($post)) {
                 $model->IdCategory = $IdCategory;    
             
             if(!$model->save()){
@@ -99,11 +109,10 @@ class QuestionsController extends Controller
                 }
                 
                 $this->subirFoto($model);
-                
-                return $this->redirect(['create',
-                    'IdCategory' => $IdCategory,
-                ]);  
             }
+
+            Yii::$app->session->setFlash('success1', "Question saved successfully");
+            return $this->redirect(['create', 'IdCategory' => $IdCategory ]); 
         } else {
             $model->loadDefaultValues();
             $model2->loadDefaultValues();
@@ -130,7 +139,15 @@ class QuestionsController extends Controller
         $this->layout = '@app/views/layouts/main-admin';
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        $old_url = $model->Image;
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if (UploadedFile::getInstance($model, 'archivo')) {
+                $this->subirFoto($model, 1);
+            }else{
+                $model->Image = $old_url;
+            }
+
+            $model->save(false);
             return $this->redirect(['index', 'IdCategory' => $model->IdCategory]);
         }
 
@@ -152,7 +169,8 @@ class QuestionsController extends Controller
         $model = $this->findModel($id);
         $cat = $model->IdCategory;
         $model->delete();
-
+        
+        Yii::$app->session->setFlash('success1', "Question deleted successfully");
         return $this->redirect(['index', 'IdCategory' => $cat]);
     }
 
@@ -172,10 +190,14 @@ class QuestionsController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    protected function subirFoto(Questions $model) 
+    protected function subirFoto(Questions $model, $type=1) 
     {
 
-        $model->archivo = UploadedFile::getInstance($model, 'archivo');
+        if ($type == 1) {
+            $model->archivo = UploadedFile::getInstance($model, 'archivo');
+        }else{
+            $model->archivo = UploadedFile::getInstance($model, 'archivo');
+        }
 
             if($model->archivo){
                 $imageRute = 'images/' .time()."_".$model->archivo->baseName.".".$model->archivo->extension;
@@ -185,7 +207,7 @@ class QuestionsController extends Controller
                 }
             }
 
-            $model->save(false);
+        $model->save(false);
     }
 
     protected function questionLimit($IdCategory){
@@ -217,11 +239,13 @@ class QuestionsController extends Controller
                     $model2->Answer = $post["CorrectAnswer"][$i];
                     $correct = $post['multiple'];
 
-                    if(isset([$correct][$i])){
-                        $model2->CorrectAnswer = '1';
-                    }else{
-                        $model2->CorrectAnswer = '0';
-                    }                
+                    if ($model->IdQuestionType == 2) {
+                         if($post['multiple'] == $i){
+                            $model2->CorrectAnswer = '1';
+                        }else{
+                            $model2->CorrectAnswer = '0';
+                        }               
+                    }               
                     if(!$model2->save()){
                         print_r($model2->errors);
                         exit;
@@ -230,6 +254,7 @@ class QuestionsController extends Controller
             }
             
         }
+
     }
 }
 
