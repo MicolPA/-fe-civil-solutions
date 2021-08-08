@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\Category;
-use app\models\Questiontype;
+use app\models\QuestionType;
 
 /**
  * This is the model class for table "questions".
@@ -40,7 +40,7 @@ class Questions extends \yii\db\ActiveRecord
             [['IdQuestionType', 'IdCategory'], 'integer'],
             [['Question'], 'string', 'max' => 255],
             [['IdCategory'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['IdCategory' => 'IdCategory']],
-            [['IdQuestionType'], 'exist', 'skipOnError' => true, 'targetClass' => Questiontype::className(), 'targetAttribute' => ['IdQuestionType' => 'IdQuestionType']],
+            [['IdQuestionType'], 'exist', 'skipOnError' => true, 'targetClass' => QuestionType::className(), 'targetAttribute' => ['IdQuestionType' => 'IdQuestionType']],
             [['archivo'], 'file', 'extensions' => 'jpg,png'],
         ];
     }
