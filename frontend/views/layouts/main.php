@@ -28,7 +28,12 @@ AppAsset::register($this);
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <!-- Brand -->
-        <?= Html::a('<i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>', ['/'], ['class' => 'd-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none font-weight-bold text-primary']) ?>
+        <a class="navbar-brand d-none d-lg-flex" href="/">
+            <i class="far fa-comments fa-2x mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h5 h5 pt-3">FE CIVIL SOLUTIONS</span>
+        </a>
+        <a class="navbar-brand d-lg-none" href="/">
+            <i class="far fa-comments mr-2 text-primary"></i> <span class="font-weight-bold text-darkblue h6 pt-3">FE CIVIL SOLUTIONS</span>
+        </a>
         <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,15 +66,16 @@ AppAsset::register($this);
             <?php endif ?>
             <!-- Mobile button -->
             <div class="d-lg-none text-center">
-                 <?php if (Yii::$app->user->isGuest): ?>
-                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/frontend/web/site/signup">
+            <?php if (Yii::$app->user->isGuest): ?>
+                <a class="btn btn-block btn-sm btn-primary" href="/frontend/web/site/signup">
                     Sign Up
                 </a>
             <?php else: ?>
-                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/frontend/web/site/home">
+                <a class="btn btn-block btn-sm btn-primary" href="/frontend/web/site/home">
                     Take Exam
                 </a>
             <?php endif ?>
+
             </div>
         </div>
     </div>

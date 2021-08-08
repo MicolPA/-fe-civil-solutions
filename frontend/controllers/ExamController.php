@@ -37,7 +37,9 @@ class ExamController extends \yii\web\Controller
 
             }
         }
-
+        if (empty($cat_array['categories_count']) OR empty($cat_array['categories_id']) or $post['time'] < 1) {
+            return $this->redirect(['/site/home']);
+        }
         $result = $this->saveExamGenerated($cat_array, $post['time'], $post['type']);
         if ($result) {
             $this->redirect(['start', 'id' => $result]);
@@ -81,7 +83,7 @@ class ExamController extends \yii\web\Controller
     function getExamLog($id){
         $log = Examlogs::find()->where(['IdExam' => $id, 'FinishAt' => null, 'UserId' => Yii::$app->user->identity->id])->one();
         if ($log) {
-            return $log;
+            // return $log;
             return null;
         }else{
             $log = new Examlogs();

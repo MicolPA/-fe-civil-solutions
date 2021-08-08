@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
-    <h1><?= Html::encode($this->title) ?> <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success btn-sm float-right']) ?></h1>
+    <h1><?= Html::encode($this->title) ?> <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success btn-sm float-right mt-3']) ?></h1>
 
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

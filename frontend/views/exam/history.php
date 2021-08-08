@@ -50,6 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     $correct = ExamResults::find()->where(['IdExam' => $data->IdExam, 'LogId' => $data->Id, 'Correct' => 1])->count();
                     $all = ExamResults::find()->where(['IdExam' => $data->IdExam, 'LogId' => $data->Id,])->count();
 
+                    $all = $all < 1 ? 1 : $all;
+
                     $precent = ($correct * 100) / $all;
 
                     return number_format($precent,0)."%";

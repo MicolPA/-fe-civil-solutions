@@ -13,23 +13,22 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->IdCategory], ['class' => 'btn btn-primary']) ?>
+    <h1>
+        <?= Html::encode($this->title) ?>
+        <?= Html::a('Update', ['update', 'id' => $model->IdCategory], ['class' => 'btn btn-primary btn-sm mt-2 float-right']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->IdCategory], [
-            'class' => 'btn btn-danger',
+            'class' => 'btn btn-danger btn-sm mt-2 float-right mr-2',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+    </h1>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'IdCategory',
+            // 'IdCategory',
             'Name',
             'Count',
             'Limit',
