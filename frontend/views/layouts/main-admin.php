@@ -19,7 +19,8 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <!-- <title><?//= Html::encode($this->title) ?></title> -->
+    <title>FE CIVIL SOLUTIONS</title>
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
@@ -63,12 +64,12 @@ AppAsset::register($this);
 
 
 
-<footer class="footer mt-auto py-3 text-muted">
+<!-- <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <p class="float-left">&copy; <?//= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="float-right"><?//= Yii::powered() ?></p>
     </div>
-</footer>
+</footer> -->
 
 
 <?php if(Yii::$app->session->hasFlash('success1')):?>

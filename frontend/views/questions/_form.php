@@ -42,6 +42,7 @@ use yii\widgets\ActiveForm;
          'id' => 'QuestionTypeSelect',
          'class' => 'form-control',
          'onchange' => 'questionType();',
+         'required' => 'required',
         ]
         
         )->label('Question type') 
@@ -69,8 +70,10 @@ use yii\widgets\ActiveForm;
 
    
 
-    <div class="form-group">
+    <div class="row">
+        <div class="form-group mt-4">
         <?= Html::submitButton('Save question', ['class' => 'btn btn-success btn-sm float-right pr-5 pl-5']) ?>
+    </div>
     </div>
 
     <?php ActiveForm::end(); ?>

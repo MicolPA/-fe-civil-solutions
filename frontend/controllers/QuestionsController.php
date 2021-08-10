@@ -245,6 +245,9 @@ class QuestionsController extends Controller
                         }else{
                             $model2->CorrectAnswer = '0';
                         }               
+                    }else{
+                        $model2->CorrectAnswer = '0';
+
                     }               
                     if(!$model2->save()){
                         print_r($model2->errors);
