@@ -12,7 +12,7 @@ class m210812_225511_alter_colum_answer extends Migration
      */
     public function safeUp()
     {
-        $this->alterColumn('questions', 'Question', $this->text());
+        $this->alterColumn('Questions', 'Question', $this->text());
 
     }
 
