@@ -94,6 +94,23 @@ class AnswersController extends Controller
         ]);
     }
 
+
+    function actionChangeCorrectAnswer($id, $IdQuestion){
+
+        $model = Answers::find()->where(['IdQuestion' => $IdQuestion])->all();
+
+        foreach ($model as $m) {
+            $m->CorrectAnswer = '0';
+            $m->save();
+        }
+
+        $answer = $this->findModel($id);
+        $answer->CorrectAnswer = '1';
+        $answer->save();
+        
+        return $this->redirect(Yii::$app->request->referrer); 
+    }
+
     /**
      * Updates an existing Answers model.
      * If update is successful, the browser will be redirected to the 'view' page.
