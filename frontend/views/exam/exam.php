@@ -1,6 +1,7 @@
 <?php 
 
 use app\models\Answers;
+use yii\helpers\Html;
 
 $i = 0; 
 ?>
@@ -16,55 +17,69 @@ $i = 0;
 <form action='results' id='form-test'>
 	<div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<h2 class="font-weight-light h1">Exam <span class="float-right h5 mt-3"><i class="fas fa-stopwatch"></i> Time left: <span id="time"><?= $time ?> min.</span></span></h2>
+		
+		<div class="col-md-8">
+			<h2 class="font-weight-light h1">Exam </h2>
+		</div>
+		<div class="col-md-2 text-right">
+			<a href="javascript:getQuestionsId()" class="btn btn-warning btn-xs mt-3">Generate PDF</a>
+		</div>
+		<div class="col-md-2">
+			<span class="float-right h5 mt-3"><i class="fas fa-stopwatch"></i> Time left: <span id="time"><?= $time ?>:00</span></span>
 		</div>
 	</div>
+	<input type="hidden" id="questions_all_ids">
 	<div class="list-wrapper row">
 		<?php foreach ($questions as $question_category): ?>
-				<?php foreach ($question_category as $q): ?>
-					<?php $i++ ?>
-					<div class="col-md-12 list-item">
-						<div class="card">
-						    <div class="card-header" id="headingOne<?= $i ?>">
-						      <h5 class="mb-0">
-						        <p class="font-10 mb-0 mt-1">Question #<?= $i ?> <span class="float-right badge bg-info text-white font-10"><?= $q->idCategory->Name ?></span></p>
-						        <p class="font-weight-bold h5 mt-3"><?= $q->Question ?></p>
-						      </h5>
-						    </div>
+			<?php foreach ($question_category as $q): ?>
+				<script>
+					setTimeout(function(){
+						q = $("#questions_all_ids");
+					q.val(q.val()+<?= $q->IdQuestion ?>+',');
+					},500)
+				</script>
+				<?php $i++ ?>
+				<div class="col-md-12 list-item">
+					<div class="card">
+					    <div class="card-header" id="headingOne<?= $i ?>">
+					      <h5 class="mb-0">
+					        <p class="font-10 mb-0 mt-1">Question #<?= $i ?> <span class="float-right badge bg-info text-white font-10"><?= $q->idCategory->Name ?></span></p>
+					        <p class="font-weight-bold h5 mt-3"><?= $q->Question ?></p>
+					      </h5>
+					    </div>
 
-					      	<div class="card-body">
-						        <?php if ($q['Image']): ?>
-						            <img src="/frontend/web/<?= $q['Image'] ?>" class='mb-2' width='500px' style='max-width: 100%;'>
-						        <?php endif ?>
-							     <?php $answers = Answers::find()->where(['IdQuestion' => $q->IdQuestion])->orderBy([ 'rand()' => SORT_DESC])->all() ?>
-						        <?php if ($q->IdQuestionType == 2): ?>
+				      	<div class="card-body">
+					        <?php if ($q['Image']): ?>
+					            <img src="/frontend/web/<?= $q['Image'] ?>" class='mb-2' width='500px' style='max-width: 100%;'>
+					        <?php endif ?>
+						     <?php $answers = Answers::find()->where(['IdQuestion' => $q->IdQuestion])->orderBy([ 'rand()' => SORT_DESC])->all() ?>
+					        <?php if ($q->IdQuestionType == 2): ?>
 
-							        <?php foreach ($answers as $a): ?>
-							       		<label class="w-100" for="customRadio<?= $a->IdAnswer ?>">
-							       			<div class=" border rounded p-2 mb-2">
-								       			<div class="custom-control custom-radio" id="content_<?= $i ?>">
-												  <input type="radio" id="customRadio<?= $a->IdAnswer ?>" name="answer[<?= $a->IdQuestion ?>]" class="custom-control-input radio-answer <?= $a->CorrectAnswer ? 'correct' : 'wrong' ?>" value>
-												  <label class="custom-control-label" for="customRadio<?= $a->IdAnswer ?>"><?= $a->Answer ?></label>
-												</div>
-								       		</div>
-							       		</label>
-							        <?php endforeach ?>
-							    <?php else: ?>
-							    	<input type="text" class='form-control answer_<?= $i ?>' name="answer[<?= $q->IdQuestion ?>]" placeholder='Answer here'>
-							    	<?php foreach ($answers as $a): ?>
-							       		<input type="hidden" name="answer[]" value="<?= $a->Answer ?>">
-							        <?php endforeach ?>
-						        <?php endif ?>
+						        <?php foreach ($answers as $a): ?>
+						       		<label class="w-100" for="customRadio<?= $a->IdAnswer ?>">
+						       			<div class=" border rounded p-2 mb-2">
+							       			<div class="custom-control custom-radio" id="content_<?= $i ?>">
+											  <input type="radio" id="customRadio<?= $a->IdAnswer ?>" name="answer[<?= $a->IdQuestion ?>]" class="custom-control-input radio-answer <?= $a->CorrectAnswer ? 'correct' : 'wrong' ?>" value>
+											  <label class="custom-control-label" for="customRadio<?= $a->IdAnswer ?>"><?= $a->Answer ?></label>
+											</div>
+							       		</div>
+						       		</label>
+						        <?php endforeach ?>
+						    <?php else: ?>
+						    	<input type="text" class='form-control answer_<?= $i ?>' name="answer[<?= $q->IdQuestion ?>]" placeholder='Answer here'>
+						    	<?php foreach ($answers as $a): ?>
+						       		<input type="hidden" name="answer[]" value="<?= $a->Answer ?>">
+						        <?php endforeach ?>
+					        <?php endif ?>
 
-						        <input type="hidden" class='question_<?= $i ?>' name='Question[<?= $q->IdQuestion ?>' value="<?= $q->IdQuestion ?>">
-						        <input type="hidden" class='question_type_<?= $i ?>' value="<?= $q->IdQuestionType ?>">
-					      	</div>
-						</div>
+					        <input type="hidden" class='question_<?= $i ?>' name='Question[<?= $q->IdQuestion ?>' value="<?= $q->IdQuestion ?>">
+					        <input type="hidden" class='question_type_<?= $i ?>' value="<?= $q->IdQuestionType ?>">
+				      	</div>
 					</div>
-							
-				<?php endforeach ?>
+				</div>
+						
 			<?php endforeach ?>
+		<?php endforeach ?>
 		
 	</div>
 	<div class="row">
@@ -87,7 +102,7 @@ $i = 0;
 	function startExam(){
 	    $('#staticBackdrop').modal('toggle');
   		countdown( "time", <?= $time ?>, 0 );
-	  }
+	}
 
 	setTimeout(function(){
 		
@@ -114,6 +129,13 @@ $i = 0;
 
     	
 	},1000)
+
+
+	function getQuestionsId(){
+
+		ids = $("#questions_all_ids").val();
+		window.location.href = "<?php echo Yii::getAlias('@web') ?>/exam/pdf?questions="+ids+",";
+	}
 
 
 
