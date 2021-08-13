@@ -134,7 +134,8 @@ $i = 0;
 	function getQuestionsId(){
 
 		ids = $("#questions_all_ids").val();
-		window.location.href = "<?php echo Yii::getAlias('@web') ?>/exam/pdf?questions="+ids+",";
+		window.open("<?php echo Yii::getAlias('@web') ?>/exam/pdf?questions="+ids+",", '_blank');
+		// window.location.href = "<?php echo Yii::getAlias('@web') ?>/exam/pdf?questions="+ids+",";
 	}
 
 
