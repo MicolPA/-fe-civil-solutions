@@ -79,7 +79,6 @@ class AnswersController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->IdQuestion = $IdQuestion;
-                $model->CorrectAnswer = '1';
                 $model->save();
                 return $this->redirect(['index', 'IdQuestion' => $IdQuestion]);
             }
@@ -109,6 +108,22 @@ class AnswersController extends Controller
         $answer->save();
         
         return $this->redirect(Yii::$app->request->referrer); 
+    }
+
+    function actionChangeCorrectAnswerComplete($id, $IdQuestion)
+    {
+
+        $model = Answers::find()->where(['IdQuestion' => $IdQuestion])->all();
+
+        foreach ($model as $m) {
+            $m->save();
+        }
+
+        $answer = $this->findModel($id);
+        $answer->CorrectAnswer = '1';
+        $answer->save();
+
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**

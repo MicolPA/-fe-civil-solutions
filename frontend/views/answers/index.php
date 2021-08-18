@@ -44,6 +44,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'CorrectAnswer',
                 'format' => 'raw',
                 'value' => function($data){
+                    if ($data->idQuestion->IdQuestionType == 1) {
+                        if ($data->CorrectAnswer) {
+                            return "<b class='text-success'>YES</b>";
+                        } else {
+                            $text = "<b class='text-warning'>NO</b>";
+                            return  Html::a($text, ['change-correct-answer-complete', 'id' => $data->IdAnswer, 'IdQuestion' => $data->IdQuestion], []);
+                        }
+                    } else {
+                        return "<b class='text-success'>YES</b>";
+                    }
 
                     if ($data->idQuestion->IdQuestionType == 2) {
                         if ($data->CorrectAnswer) {
@@ -56,6 +66,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                         return "<b class='text-success'>YES</b>";
                     }
+
+                   
 
                 }
             ],
