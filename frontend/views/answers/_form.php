@@ -21,7 +21,7 @@ $var = [1 => 'Correct', 0 => 'Incorrect'];
 
     <?= $form->field($model, 'Answer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'CorrectAnswer')->dropDownList($var, ['prompt' => 'Select...', 'id' => 'CorrectAnswer'], 'required'); ?>
+    <?= $form->field($model, 'CorrectAnswer')->dropDownList($var, ['prompt' => 'Select...', 'id' => 'CorrectAnswer']); ?>
 
 
     <div class="form-group">
