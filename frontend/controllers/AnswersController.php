@@ -94,7 +94,7 @@ class AnswersController extends Controller
     }
 
 
-    function actionChangeCorrectAnswer($id, $IdQuestion){
+/*     function actionChangeCorrectAnswer($id, $IdQuestion){
 
         $model = Answers::find()->where(['IdQuestion' => $IdQuestion])->all();
 
@@ -108,19 +108,21 @@ class AnswersController extends Controller
         $answer->save();
         
         return $this->redirect(Yii::$app->request->referrer); 
-    }
+    } */
 
     function actionChangeCorrectAnswerComplete($id, $IdQuestion)
     {
 
         $model = Answers::find()->where(['IdQuestion' => $IdQuestion])->all();
 
-        foreach ($model as $m) {
-            $m->save();
-        }
-
         $answer = $this->findModel($id);
-        $answer->CorrectAnswer = '1';
+        if ($answer->CorrectAnswer == '1') {
+            $answer->CorrectAnswer = '0';
+        }else if($answer->CorrectAnswer == '0'){
+            $answer->CorrectAnswer = '1';
+        }else {
+            $answer->CorrectAnswer = '1';
+        }
         $answer->save();
 
         return $this->redirect(Yii::$app->request->referrer);

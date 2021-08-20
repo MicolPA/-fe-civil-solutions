@@ -44,31 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'CorrectAnswer',
                 'format' => 'raw',
                 'value' => function($data){
-                    if ($data->idQuestion->IdQuestionType == 1) {
+                    if ($data->idQuestion->IdQuestionType == 2) {
                         if ($data->CorrectAnswer) {
-                            return "<b class='text-success'>YES</b>";
+                            $text = "<b class='text-success'>YES</b>";
+                            return  Html::a($text, ['change-correct-answer-complete', 'id' => $data->IdAnswer, 'IdQuestion' => $data->IdQuestion], []);
                         } else {
                             $text = "<b class='text-warning'>NO</b>";
                             return  Html::a($text, ['change-correct-answer-complete', 'id' => $data->IdAnswer, 'IdQuestion' => $data->IdQuestion], []);
                         }
                     } else {
-                        return "<b class='text-success'>YES</b>";
+                        $text = "<b class='text-success'>YES</b>";
+                        return  Html::a($text, ['change-correct-answer-complete', 'id' => $data->IdAnswer, 'IdQuestion' => $data->IdQuestion], []);
                     }
-
-                    if ($data->idQuestion->IdQuestionType == 2) {
-                        if ($data->CorrectAnswer) {
-                            return "<b class='text-success'>YES</b>";
-                        }else{
-                            $text = "<b class='text-warning'>NO</b>";
-                            return  Html::a($text, ['change-correct-answer', 'id' => $data->IdAnswer, 'IdQuestion' => $data->IdQuestion], []);
-                        }
-                        
-                    }else{
-                        return "<b class='text-success'>YES</b>";
-                    }
-
-                   
-
                 }
             ],
 
