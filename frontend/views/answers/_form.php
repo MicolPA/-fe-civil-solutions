@@ -5,11 +5,11 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-    /* @var $this yii\web\View */
-    /* @var $model app\models\Answers */
-    /* @var $form yii\widgets\ActiveForm */
+/* @var $this yii\web\View */
+/* @var $model app\models\Answers */
+/* @var $form yii\widgets\ActiveForm */
 
-    $var = [1 => 'Correct', 0 => 'Incorrect'];
+$var = [1 => 'Correct', 0 => 'Incorrect'];
 
 ?>
 
@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Answer')->textInput(['maxlength' => true]) ?>
 
-    <?=$form->field($model, 'CorrectAnswer')->dropDownList($var, ['prompt' => 'Seleccione Uno', 'id' => 'CorrectAnswer']); ?>
+    <?= $form->field($model, 'CorrectAnswer')->dropDownList($var, ['prompt' => 'Select...', 'id' => 'CorrectAnswer'], 'required'); ?>
 
 
     <div class="form-group">
