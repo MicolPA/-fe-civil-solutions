@@ -121,7 +121,7 @@ class AnswersController extends Controller
         }else if($answer->CorrectAnswer == '0'){
             $answer->CorrectAnswer = '1';
         }else {
-            $answer->CorrectAnswer = '1';
+            $answer->CorrectAnswer = '0';
         }
         $answer->save();
 

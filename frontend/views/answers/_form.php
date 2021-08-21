@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Answers */
 /* @var $form yii\widgets\ActiveForm */
 
-$var = [1 => 'Correct', 0 => 'Incorrect'];
+$var = [0 => 'Incorrect', 1 => 'Correct'];
 
 ?>
 
@@ -21,7 +21,7 @@ $var = [1 => 'Correct', 0 => 'Incorrect'];
 
     <?= $form->field($model, 'Answer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'CorrectAnswer')->dropDownList($var, ['prompt' => 'Select...', 'id' => 'CorrectAnswer']); ?>
+    <?= $form->field($model, 'CorrectAnswer')->dropDownList($var, ['prompt' => 'Select...', 'id' => 'CorrectAnswer', 'required' => true]); ?>
 
 
     <div class="form-group">
