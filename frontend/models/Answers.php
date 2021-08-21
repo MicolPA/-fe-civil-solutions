@@ -35,7 +35,7 @@ class Answers extends \yii\db\ActiveRecord
         return [
             [['Answer', 'IdQuestion', 'CorrectAnswer'], 'required'],
             [['IdQuestion'], 'integer'],
-            [['Answer', 'CorrectAnswer'], 'string', 'max' => 255],
+            [['CorrectAnswer'], 'string', 'max' => 255],
             [['IdQuestion'], 'exist', 'skipOnError' => true, 'targetClass' => Questions::className(), 'targetAttribute' => ['IdQuestion' => 'IdQuestion']],
             // [['archivo'], 'file', 'extensions' => 'jpg,png'],
         
