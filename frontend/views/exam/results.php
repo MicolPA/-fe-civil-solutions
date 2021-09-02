@@ -19,7 +19,7 @@ use app\models\Category;
 			<?php for ($i = 0; $i < count($infoExam['categories']); $i++): ?>
 				<?php if (isset($infoExam['categories'][$i])): ?>
 					<?php $cat = Category::findOne($infoExam['categories'][$i]) ?>
-					<p class="text-dark mb-1"><span class="font-weight-bold h5"><i class="fas fa-angle-right"></i> <?= $cat['Name'] ?>: </span> <?= $infoExam['count'][$i] . " questions" ?></p>
+					<p class="text-dark mb-1"><span class="font-weight-bold h5"><i class="fas fa-angle-right"></i> <?= $cat['Name'] ?>: </span> <?= $infoExam['exam']['Count'] . " questions" ?></p>
 				<?php endif ?>
 			<?php endFor ?>
 		</div>
