@@ -2,7 +2,13 @@
 
 use app\models\Category;
 
- ?>
+$question_total = 0;
+$count = explode(',', $infoExam['exam']['Count']);
+foreach ($count as $c) {
+	$question_total+=$c;
+}
+
+?>
 
 <div class="container">
 	<div class="row">
@@ -12,14 +18,14 @@ use app\models\Category;
 		</div>
 
 		<div class="col-md-12">
-			<p class="display-2"><?= $grade['correct'] . '/' . $grade['all'] ?></p>
+			<p class="display-2"><?= $grade['correct'] . '/' . $question_total ?></p>
 		</div>
 
 		<div class="col-md-12">
 			<?php for ($i = 0; $i < count($infoExam['categories']); $i++): ?>
 				<?php if (isset($infoExam['categories'][$i])): ?>
 					<?php $cat = Category::findOne($infoExam['categories'][$i]) ?>
-					<p class="text-dark mb-1"><span class="font-weight-bold h5"><i class="fas fa-angle-right"></i> <?= $cat['Name'] ?>: </span> <?= $infoExam['exam']['Count'] . " questions" ?></p>
+					<p class="text-dark mb-1"><span class="font-weight-bold h5"><i class="fas fa-angle-right"></i> <?= $cat['Name'] ?>: </span> <?= $infoExam['count'][$i] . " questions" ?></p>
 				<?php endif ?>
 			<?php endFor ?>
 		</div>
