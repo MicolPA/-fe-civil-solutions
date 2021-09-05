@@ -37,7 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($data){
                     $correct = ExamResults::find()->where(['IdExam' => $data->IdExam, 'LogId' => $data->Id, 'Correct' => 1])->count();
-                    $all = ExamResults::find()->where(['IdExam' => $data->IdExam, 'LogId' => $data->Id,])->count();
+                    $all = 0;
+                    $exam = ExamGenerated::findOne($data->IdExam);
+                    $count = explode(',', $exam['Count']);
+                    foreach ($count as $c) {
+                        $all+=$c;
+                    }
 
                     return "$correct/$all";
                 },
@@ -48,7 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data){
 
                     $correct = ExamResults::find()->where(['IdExam' => $data->IdExam, 'LogId' => $data->Id, 'Correct' => 1])->count();
-                    $all = ExamResults::find()->where(['IdExam' => $data->IdExam, 'LogId' => $data->Id,])->count();
+                    $all = 0;
+                    $exam = ExamGenerated::findOne($data->IdExam);
+                    $count = explode(',', $exam['Count']);
+                    foreach ($count as $c) {
+                        $all+=$c;
+                    }
 
                     $all = $all < 1 ? 1 : $all;
 
