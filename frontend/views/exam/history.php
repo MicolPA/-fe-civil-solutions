@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $exam = ExamGenerated::findOne($data->IdExam);
                     $count = explode(',', $exam['Count']);
                     foreach ($count as $c) {
-                        $all+=$c;
+                        $all+=(int)$c;
                     }
 
                     return "$correct/$all";
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $exam = ExamGenerated::findOne($data->IdExam);
                     $count = explode(',', $exam['Count']);
                     foreach ($count as $c) {
-                        $all+=$c;
+                        $all+=(int)$c;
                     }
 
                     $all = $all < 1 ? 1 : $all;
